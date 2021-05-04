@@ -1,0 +1,31 @@
+{
+  "name": "karagame",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "server": "json-server server.json -w 500 -p 3333",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@babel/core": "^7.14.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "axios": "^0.21.1",
+    "next": "10.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "^1.6.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "@types/node": "^15.0.1",
+    "@types/react": "^17.0.4",
+    "framer-motion": "^4.1.11",
+    "json-server": "^0.16.3",
+    "typescript": "^4.2.4"
+  }
+}
