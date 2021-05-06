@@ -1,14 +1,16 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 
 
-type ItemGame = {
-  nameFamily: string;
-  itemsFamily: String[];
+type ItemInformation = {
+  name: string;
+  characters: String[];
 }
 
 type ItemsGameContextData = {
-  itemsGame: ItemGame[];
-  selectToggleItemGame: (nameFamilySelected: string, itemsFamily: String[]) => void;
+  itemsInGameInformation: ItemInformation[];
+  selectToggleItemGame: (name: string, characters: String[]) => void;
+  resetItemsInGame: () => void;
 }
 
 type ItemsGameProviderProps = {
@@ -24,29 +26,57 @@ export function ItemsGameProvider({
   children
 }: ItemsGameProviderProps) {
 
-  const [itemsGame, setItemsGame] = useState<ItemGame[]>([])
+  const [itemsInGameInformation, setItemsInGameInformation] = useState<ItemInformation[]>([])
 
-  function selectToggleItemGame(nameFamilySelected: string, itemsFamily: String[]) {
+  useEffect(() => {
+    const dataCookies = Cookies.getJSON('KaraGameInformation')
 
-    const indexFamily = itemsGame.findIndex(
-      family => family.nameFamily === nameFamilySelected
+    if (!dataCookies) {
+      Cookies.set('KaraGameInformation', JSON.stringify({
+        nameAlphabet: '',
+        itemsAlphabetInGame: {}
+      }))
+    }
+  }, [])
+
+  function selectToggleItemGame(nameItemSelected: string, characters: String[]) {
+
+    const indexFamily = itemsInGameInformation.findIndex(
+      family => family.name === nameItemSelected
     )
 
+    const dataCookiesInformation = Cookies.getJSON('KaraGameInformation')
+
     if (indexFamily === -1) {
-      const itemsGameUpdated = [ ...itemsGame, { nameFamily: nameFamilySelected, itemsFamily }]
+      const itemsInformationUpdated = [ ...itemsInGameInformation, { name: nameItemSelected, characters }]
 
-      setItemsGame(itemsGameUpdated)
+      Cookies.set('KaraGameInformation', JSON.stringify({
+        ...dataCookiesInformation,
+        itemsAlphabetInGame: itemsInformationUpdated
+      }))
+      setItemsInGameInformation(itemsInformationUpdated)
     } else {
-      const itemsGameUpdated = itemsGame.filter(family => family.nameFamily !== nameFamilySelected)
+      const itemsInformationUpdated = itemsInGameInformation.filter(family => 
+        family.name !== nameItemSelected
+      )
 
-      setItemsGame(itemsGameUpdated)
+      Cookies.set('KaraGameInformation', JSON.stringify({
+        ...dataCookiesInformation,
+        itemsAlphabetInGame: itemsInformationUpdated
+      }))
+      setItemsInGameInformation(itemsInformationUpdated)
     }
+  }
+
+  function resetItemsInGame() {
+    setItemsInGameInformation([])
   }
 
   return (
     <ItemsGameContext.Provider value={{
-      itemsGame,
-      selectToggleItemGame
+      itemsInGameInformation,
+      selectToggleItemGame,
+      resetItemsInGame
     }}>
       {children}
     </ItemsGameContext.Provider>
