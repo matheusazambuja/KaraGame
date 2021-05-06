@@ -38,11 +38,9 @@ export default function Header() {
           <FontAwesomeIcon icon='home' />
         </LinkChakra>
       </Link>
-      <Link href='/families'>
-        <Text fontSize='1.2rem'>
-          Families
-        </Text>
-      </Link>
+      <Text fontSize='1.2rem'>
+        Families
+      </Text>
       <Button onClick={toggleColorMode} marginLeft='auto' fontSize='1.2rem'>
         {colorModeObject.iconButtonToggle}
       </Button>
