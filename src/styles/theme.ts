@@ -14,7 +14,11 @@ export const customTheme = extendTheme({
       },
 
       body: {
-        background: 'gray.50',
+        background: 'gray.50'
+      },
+
+      'html, body': {
+        height: '100%'
       },
 
       'body, input, textarea, button': {
@@ -48,7 +52,8 @@ export const customTheme = extendTheme({
     ...theme.breakpoints,
     md: '830px',
     lg: '1080px',
-    xl2: '1280px'
+    xl2: '1280px',
+    vhBig: '99.9vh'
   },
 
   fontWeights: {
