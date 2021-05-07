@@ -2,7 +2,8 @@ import { Box, Divider, Heading, Link as LinkChakra, Text } from "@chakra-ui/layo
 import { Button, color, useColorModeValue } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Cookies from "js-cookie"
-import { GetServerSideProps } from "next"
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next"
+import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from "react"
@@ -36,17 +37,18 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   const router = useRouter()
   const { slug } = router.query
 
-  const dataCookiesInformation = Cookies.getJSON('KaraGameInformation')
+  useEffect(() => {
+    const dataCookiesInformation = Cookies.getJSON('KaraGameInformation')
 
-  console.log(dataCookiesInformation.nameAlphabet, slug)
-  if (dataCookiesInformation.nameAlphabet !== slug) {
-    Cookies.set('KaraGameInformation', JSON.stringify({
-      nameAlphabet: slug,
-      itemsAlphabetInGame: {}
-    }))
-    
-    resetItemsInGame()
-  }
+    if (dataCookiesInformation.nameAlphabet !== slug) {
+      Cookies.set('KaraGameInformation', JSON.stringify({
+        nameAlphabet: slug,
+        itemsAlphabetInGame: []
+      }))
+      
+      resetItemsInGame()
+    }
+  }, [])
 
   const colorModeObject = {
     backgroundHome: useColorModeValue('', 'gray.800'),
@@ -57,6 +59,10 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   }
 
   function handleFamilySelected(nameFamily: string) {
+
+    if (itemsInGameInformation.length === 0) return false;
+
+    console.log(itemsInGameInformation)
     const indexItemInGame = itemsInGameInformation.findIndex(
       item => item.name === nameFamily
     )
@@ -68,11 +74,18 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     return true
   }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <Box as='main' minHeight='calc(100vh - 6rem)' display='flex'
       width='100vw' background={colorModeObject.backgroundHome}
       color={colorModeObject.textColorHome}
     >
+      <Head>
+        <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
+      </Head>
       <Box as='div' display='flex' flexDirection='column' alignItems='center'
         height='100%' width='100%' marginTop='1rem' marginLeft='1rem'
       >
@@ -141,14 +154,31 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get(`/alphabets/`)
+
+  const paths = data.map(alphabet => {
+    return {
+      params: {
+        slug: alphabet.id
+      }
+    }
+  })
+
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params
 
-  const { data } = await api.get(`/${slug}`)
+  const { data } = await api.get(`/alphabets/${slug}`)
 
-  const dataAlphabetArray = Object.entries(data.alphabet)
+  const elementsAlphabetArray = Object.entries(data.alphabet)
 
-  const dataAlphabet: DataAlphabet[] = dataAlphabetArray.map(alphabet => {
+  const dataAlphabet: DataAlphabet[] = elementsAlphabetArray.map(alphabet => {
     return {
       name: alphabet[0],
       characters: alphabet[1]
@@ -158,10 +188,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       infoAlphabet: {
-        name: data.name,
+        name: data.id,
         infoText: data.info
       },
       dataAlphabet
-    }
+    },
+    revalidate: 60 * 60 * 24 // 24 hours
   }
 }

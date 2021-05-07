@@ -34,9 +34,14 @@ export function ItemsGameProvider({
     if (!dataCookies) {
       Cookies.set('KaraGameInformation', JSON.stringify({
         nameAlphabet: '',
-        itemsAlphabetInGame: {}
+        itemsAlphabetInGame: []
       }))
+      setItemsInGameInformation([])
+
+      return;
     }
+
+    setItemsInGameInformation(dataCookies.itemsAlphabetInGame)
   }, [])
 
   function selectToggleItemGame(nameItemSelected: string, characters: String[]) {
