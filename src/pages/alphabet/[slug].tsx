@@ -1,4 +1,4 @@
-import { Box, Divider, Heading, Link as LinkChakra, Text } from "@chakra-ui/layout"
+import { Box, Center, Divider, Heading, Link as LinkChakra, Text } from "@chakra-ui/layout"
 import { Button, color, useColorModeValue } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Cookies from "js-cookie"
@@ -53,16 +53,16 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   const colorModeObject = {
     backgroundHome: useColorModeValue('', 'gray.800'),
     backgroundButton: useColorModeValue('gray.300', 'gray.850'),
+    backgroundInfo: useColorModeValue('gray.100', ''),
     textColorHome: useColorModeValue('', 'gray.100'),
     colorSchemeButton: useColorModeValue('teal', 'twitter'),
-    colorCheckButton: useColorModeValue('white', 'green')
+    colorCheckButton: useColorModeValue('white', 'green'),
   }
 
   function handleFamilySelected(nameFamily: string) {
 
     if (itemsInGameInformation.length === 0) return false;
 
-    console.log(itemsInGameInformation)
     const indexItemInGame = itemsInGameInformation.findIndex(
       item => item.name === nameFamily
     )
@@ -74,8 +74,8 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     return true
   }
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  function capitalizeFirstLetter(word: string) {
+    return word.charAt(0).toUpperCase() + word.slice(1)
   }
 
   return (
@@ -87,14 +87,14 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
       </Head>
       <Box as='div' display='flex' flexDirection='column' alignItems='center'
-        height='100%' width='100%' marginTop='1rem' marginLeft='1rem'
+        height='100%' width='100%' margin='0 2rem'
       >
         <Heading paddingTop='2rem' color={colorModeObject.textColorHome}
         >
           Escolha as famílias para estudar
         </Heading>
         <Box as='section' gridArea='buttonsFamilies' display='flex' flexWrap='wrap'
-          marginTop='3rem' 
+          marginTop='3rem' width='50rem'
         >
           {dataAlphabet.map((family, indexFamily) => (
             <>
@@ -127,17 +127,27 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
           ))}
         </Box>
       </Box>
+      <Center margin='2rem 0'>
+        <Divider orientation="vertical" />
+      </Center>
       <Box as='div' gridArea='startGame' display='flex' alignItems='center' 
-        flexDirection='column' height='calc(100vh - 6rem)' width='50rem' justifyContent='center'
-        padding='2rem 5rem'
+        flexDirection='column' justifyContent='center' height='100%' width='100%'
+        padding='2rem'
       >
-        <Text as='strong' fontSize='2rem' fontWeight='600' textTransform='capitalize'>
+        <Text as='strong' fontSize='2rem' fontWeight='600' textTransform='capitalize'
+          marginBottom='2rem'
+        >
           {infoAlphabet.name}
         </Text>
-        <Text as='span' fontSize='1.3rem' margin='2rem 0 2.5rem 0'>
-          {infoAlphabet.infoText}
-        </Text>
-        <Divider orientation="horizontal" />
+        {/* <Divider orientation="horizontal" /> */}
+        <Box background={colorModeObject.backgroundInfo}
+          border='1px solid' borderColor='blackAlpha.100' boxShadow='1px 1px 13px -1px rgba(0,0,0,0.53)'
+          margin='0.5rem' padding='1rem' borderRadius='10px'
+        >
+          <Text as='span' fontSize='1.3rem' fontStyle='italic'>
+            {infoAlphabet.infoText}
+          </Text>
+        </Box>
         <Link href='/game'>
           <LinkChakra marginTop='2.5rem'
             _hover={{
