@@ -1,8 +1,8 @@
 import { Box, Center, Divider, Heading, Link as LinkChakra, Text } from "@chakra-ui/layout"
-import { Button, color, useColorModeValue } from "@chakra-ui/react"
+import { Button, useColorModeValue } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Cookies from "js-cookie"
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next"
+import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from 'next/router'
@@ -10,7 +10,7 @@ import { useContext, useEffect } from "react"
 import { ItemsGameContext } from "../../contexts/ItemsGameContext"
 
 import { api } from "../../services/api"
-
+import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
 
 type DataAlphabet = {
   name: string;
@@ -74,10 +74,6 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     return true
   }
 
-  function capitalizeFirstLetter(word: string) {
-    return word.charAt(0).toUpperCase() + word.slice(1)
-  }
-
   return (
     <Box as='main' minHeight='calc(100vh - 6rem)' display='flex'
       width='100vw' background={colorModeObject.backgroundHome}
@@ -139,7 +135,6 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         >
           {infoAlphabet.name}
         </Text>
-        {/* <Divider orientation="horizontal" /> */}
         <Box background={colorModeObject.backgroundInfo}
           border='1px solid' borderColor='blackAlpha.100' boxShadow='1px 1px 13px -1px rgba(0,0,0,0.53)'
           margin='0.5rem' padding='1rem' borderRadius='10px'
@@ -154,9 +149,11 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
               textDecoration: 'none'
             }}
           >
-            <Button size='lg'>
-              Iniciar game
-            </Button>
+            {itemsInGameInformation.length >= 1 && (
+              <Button size='lg'>
+                Iniciar game
+              </Button>
+            )}
           </LinkChakra>
         </Link>
       </Box>
