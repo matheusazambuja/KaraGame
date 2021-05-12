@@ -19,17 +19,24 @@ export default function Home() {
       <Head>
         <title>Home - KaraGame</title>
       </Head>
-      <Heading paddingTop='2rem'
+      <Heading paddingTop='4.5rem' fontSize='4.5rem'
         color={colorModeObject.textColorHome}
       >
-        Opções de estudo
+        KaraGame
       </Heading>
+      <Text fontSize='1.3rem' textAlign='center' lineHeight='2.2rem' marginTop='2.7rem'>
+        Este aplicativo foi criado com o intuito para que você pratique
+        Hiragana e Katakana.<br />
+        Divirta-se iniciando seus estudos na língua japonesa. 🚀
+      </Text>
       <Box as='section' display='flex' justifyContent='space-around'
-        marginTop='4rem'
+        marginTop='9rem' padding='0 15rem'
         width='100%'
       >
         <Link href='/alphabet/hiragana'>
-          <Button size='lg'>
+          <Button size='lg' flex='1 0 50%' marginRight='2rem'
+            colorScheme='whatsapp' fontSize='1.3rem'
+          >
             <LinkChakra
               _hover={{
                 textDecoration: 'none'
@@ -40,7 +47,9 @@ export default function Home() {
           </Button>
         </Link>
         <Link href='/alphabet/katakana'>
-          <Button size='lg'>
+          <Button size='lg' flex='1 0 50%' colorScheme='whatsapp'
+            fontSize='1.3rem'
+          >
             <LinkChakra
               _hover={{
                 textDecoration: 'none'

@@ -86,6 +86,7 @@ export const customTheme = extendTheme({
   
     green: {
       ...theme.colors.green,
+      100: '#68D391',
       500: '#04D361'
     },
   

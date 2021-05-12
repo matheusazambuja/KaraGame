@@ -55,7 +55,6 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     backgroundButton: useColorModeValue('gray.300', 'gray.850'),
     backgroundInfo: useColorModeValue('gray.100', ''),
     textColorHome: useColorModeValue('', 'gray.100'),
-    colorSchemeButton: useColorModeValue('teal', 'twitter'),
     colorCheckButton: useColorModeValue('white', 'green'),
   }
 
@@ -83,9 +82,9 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
       </Head>
       <Box as='div' display='flex' flexDirection='column' alignItems='center'
-        height='100%' width='100%' margin='0 2rem'
+        height='100%' width='100%' margin='0 2rem' marginBottom='3rem' alignSelf='center'
       >
-        <Heading paddingTop='2rem' color={colorModeObject.textColorHome}
+        <Heading color={colorModeObject.textColorHome}
         >
           Escolha as famílias para estudar
         </Heading>
@@ -99,7 +98,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
                   family.name, family.characters)}
 
                   flex='1 0 20%' margin='0.4rem' size='lg'
-                  colorScheme={colorModeObject.colorSchemeButton}
+                  colorScheme='whatsapp'
                   leftIcon={<FontAwesomeIcon icon='check-circle' color={colorModeObject.colorCheckButton} />}
                 >
                   <Text as='span'>
@@ -130,7 +129,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         flexDirection='column' justifyContent='center' height='100%' width='100%'
         padding='2rem'
       >
-        <Text as='strong' fontSize='2rem' fontWeight='600' textTransform='capitalize'
+        <Text as='strong' fontSize='2rem' textTransform='capitalize'
           marginBottom='2rem'
         >
           {infoAlphabet.name}
@@ -143,19 +142,41 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
             {infoAlphabet.infoText}
           </Text>
         </Box>
-        <Link href='/game'>
-          <LinkChakra marginTop='2.5rem'
-            _hover={{
-              textDecoration: 'none'
-            }}
+        <Text as='span' fontSize='1.3rem' fontStyle='italic' marginTop='1.6rem'>
+          Como deseja estudar?
+        </Text>
+        {itemsInGameInformation.length >= 1 && (
+          <Box as='div' display='flex' alignItems='center' justifyContent='center'
+            width='100%' padding='0 1rem' marginTop='2rem'
           >
-            {itemsInGameInformation.length >= 1 && (
-              <Button size='lg'>
-                Iniciar game
+            <Link href='/game/matching-elements'>
+              <Button size='lg' flex='1 0 50%' marginRight='2rem' 
+                colorScheme='whatsapp'
+              >
+                <LinkChakra
+                  _hover={{
+                    textDecoration: 'none'
+                  }}
+                >
+                  Relacionar elementos
+                </LinkChakra>
               </Button>
-            )}
-          </LinkChakra>
-        </Link>
+            </Link>
+            <Link href='/game/quiz'>
+              <Button size='lg' flex='1 0 50%'
+                colorScheme='whatsapp'
+              >
+                <LinkChakra
+                  _hover={{
+                    textDecoration: 'none'
+                  }}
+                >
+                  Quiz
+                </LinkChakra>
+              </Button>
+            </Link>
+          </Box>
+        )}
       </Box>
     </Box>
   )

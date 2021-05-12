@@ -1,12 +1,12 @@
-import { Box, Center, Divider, Text } from "@chakra-ui/layout"
-import { Button, ButtonProps, Image as ImageChakra, useColorModeValue } from "@chakra-ui/react"
-import Cookies from "js-cookie"
 import { GetServerSideProps } from "next"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import Cookies from "js-cookie"
+
+import { Box, Center, Divider, Text } from "@chakra-ui/layout"
+import { Button, ButtonProps, Image as ImageChakra, useColorModeValue } from "@chakra-ui/react"
 
 import { useEffect, useState } from "react"
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter"
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter"
 
 type DataItemSide = {
   id: number;
@@ -16,9 +16,7 @@ type DataItemSide = {
 }
 
 
-export default function Game() {
-
-  const router = useRouter()
+export default function MatchingGame() {
 
   const [itemsLeftSide, setItemsLeftSide] = useState<DataItemSide[]>([])
   const [itemLeftSideSelected, setItemLeftSideSelected] = useState<DataItemSide>(null)
@@ -184,7 +182,7 @@ export default function Game() {
   function getStyleItemLeftSideSelected(character: string) {
     if (character === itemLeftSideSelected?.character) {
       const styleButton: ButtonProps = {
-        colorScheme: 'teal',
+        colorScheme: 'whatsapp',
         fontSize: '1.1rem',
         opacity: 0.8,
         _hover: {
@@ -202,7 +200,7 @@ export default function Game() {
   function getStyleItemRightSideSelected(character: string) {
     if (character === itemRightSideSelected?.character) {
       const styleButton: ButtonProps = {
-        colorScheme: 'teal',
+        colorScheme: 'whatsapp',
         fontSize: '1.1rem',
         opacity: 0.8,
         _hover: {
@@ -219,8 +217,7 @@ export default function Game() {
 
   const colorModeObject = {
     backgroundPage: useColorModeValue('', 'gray.800'),
-    textColorPage: useColorModeValue('', 'gray.100'),
-    colorSchemeButton: useColorModeValue('teal', 'twitter')
+    textColorPage: useColorModeValue('', 'gray.100')
   }
 
   return (
@@ -247,6 +244,7 @@ export default function Game() {
             {...getStyleItemWasSelectedCorrectly(item)}
 
             margin='1.7rem'
+            textTransform='uppercase'
             transition='all 400ms'
           >
             {item.character}
@@ -292,15 +290,34 @@ export default function Game() {
             {`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}
           </Text>
 
+          <Text as='strong' marginBottom='1rem' marginTop='2.5rem' color='green.100'>
+            Objetivo do jogo:
+          </Text>
+          <Text as='span' textAlign='center' padding='0 3rem'>
+            Relacionar corretamente os elementos das duas colunas
+          </Text>
+
+          {!isFinishedGame && 
+            quantityItemsSelectedCorrectly > 0 &&
+            quantityItemsSelectedCorrectly < itemsLeftSide.length
+            && (
+              <>
+                <Button marginTop='3rem' colorScheme='green' onClick={() => setDefaultStateGame()}>
+                  Reiniciar jogo
+                </Button>
+              </>
+            )
+          }
+
           {isFinishedGame && (
             <>
-              <Text as='strong' marginTop='6rem'>
+              <Text as='strong' marginTop='3rem'>
                 Parabéns!!!
               </Text>
               <Button marginTop='2rem' colorScheme='green' onClick={() => setDefaultStateGame()}>
                 Estudar novamente
               </Button>
-              <Button marginTop='2rem' colorScheme='green'>
+              <Button marginTop='2rem' marginBottom='3rem' colorScheme='green'>
                 <Link href={`/alphabet/${nameAlphabet}`}>
                   Estudar outras famílias
                 </Link>
