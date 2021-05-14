@@ -277,23 +277,23 @@ export default function MatchingGame() {
           <Divider orientation="vertical" />
         </Center>
         <Box gridArea='info' display='flex' marginLeft='auto' marginRight='auto' flexDirection='column' 
-          alignItems='center' marginTop='4rem'
+          alignItems='center' marginTop='2rem'
         >
-          <Text as='strong' marginBottom='1.6rem'>
+          <Text as='strong' fontSize='1.3rem' marginBottom='1.6rem'>
             {capitalizeFirstLetter(nameAlphabet)}
           </Text>
           <ImageChakra src={`/${nameAlphabet}.png`} width='10rem' />
-          <Text as='strong' marginTop='3rem'>
+          <Text as='strong' fontSize='1.15rem' marginTop='2.5rem'>
             Pares restantes
           </Text>
-          <Text as='strong'>
+          <Text as='strong' fontSize='1.1rem'>
             {`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}
           </Text>
 
-          <Text as='strong' marginBottom='1rem' marginTop='2.5rem' color='green.100'>
+          <Text as='strong' fontSize='1.3rem' marginBottom='1rem' marginTop='2.5rem' color='green.100'>
             Objetivo do jogo:
           </Text>
-          <Text as='span' textAlign='center' padding='0 3rem'>
+          <Text as='span' fontSize='1.1rem' textAlign='center' padding='0 3rem'>
             Relacionar corretamente os elementos das duas colunas
           </Text>
 

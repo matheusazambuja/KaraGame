@@ -53,7 +53,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   const colorModeObject = {
     backgroundHome: useColorModeValue('', 'gray.800'),
     backgroundButton: useColorModeValue('gray.300', 'gray.850'),
-    backgroundInfo: useColorModeValue('gray.100', ''),
+    backgroundInfo: useColorModeValue('gray.50', ''),
     textColorHome: useColorModeValue('', 'gray.100'),
     colorCheckButton: useColorModeValue('white', 'green'),
   }
@@ -127,27 +127,27 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
       </Center>
       <Box as='div' gridArea='startGame' display='flex' alignItems='center' 
         flexDirection='column' justifyContent='center' height='100%' width='100%'
-        padding='2rem'
+        padding='2rem' marginTop='2rem' marginBottom='3rem'
       >
-        <Text as='strong' fontSize='2rem' textTransform='capitalize'
+        <Text as='strong' fontSize='2.5rem' textTransform='capitalize'
           marginBottom='2rem'
         >
           {infoAlphabet.name}
         </Text>
-        <Box background={colorModeObject.backgroundInfo}
-          border='1px solid' borderColor='blackAlpha.100' boxShadow='1px 1px 13px -1px rgba(0,0,0,0.53)'
+        <Box background={colorModeObject.backgroundInfo} textAlign='center'
+          border='1px solid' borderColor='blackAlpha.100' boxShadow='1px 1px 13px -1px rgba(0,0,0,0.13)'
           margin='0.5rem' padding='1rem' borderRadius='10px'
         >
-          <Text as='span' fontSize='1.3rem' fontStyle='italic'>
+          <Text as='span' fontSize='1.3rem' lineHeight='1.8rem'>
             {infoAlphabet.infoText}
           </Text>
         </Box>
-        <Text as='span' fontSize='1.3rem' fontStyle='italic' marginTop='1.6rem'>
+        <Text as='strong' fontSize='1.3rem' marginTop='1.2rem'>
           Como deseja estudar?
         </Text>
         {itemsInGameInformation.length >= 1 && (
           <Box as='div' display='flex' alignItems='center' justifyContent='center'
-            width='100%' padding='0 1rem' marginTop='2rem'
+            width='100%' padding='0 1rem' marginTop='2.4rem'
           >
             <Link href='/game/matching-elements'>
               <Button size='lg' flex='1 0 50%' marginRight='2rem' 
