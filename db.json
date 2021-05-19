@@ -2,7 +2,7 @@
     "alphabets": [
         {
             "id": "katakana",
-            "info": "O katakana カタカナ (katakana) é um dos silabários empregados na escrita japonesa junto com o hiragana. Quando se refere ao conjunto de silabários hiragana e katakana se refere como kana. Dos alfabetos japoneses, este é o mais antigo e foi desenvolvido para simplificar os kanjis de origem chinesa que chegaram antes do começo da isolação cultural japonesa, que se manteve inflexível até o fim da Era Edo. Estes caracteres, ao contrário dos kanji, não têm nenhum valor conceitual, senão unicamente fonético usado para representar onomatopeias, nomes científicos de plantas, animais e minerais, palavras e nomes estrangeiros, além de enfatizar certas expressões em textos. Graficamente apresentam uma forma angular e geométrica.",
+            "info": "O katakana カタカナ (katakana) é um dos silabários empregados na escrita japonesa junto com o hiragana. Quando se refere ao conjunto de silabários hiragana e katakana se refere como kana. Estes caracteres, ao contrário dos kanji, não têm nenhum valor conceitual, senão unicamente fonético usado para representar onomatopeias, nomes científicos de plantas, animais e minerais, palavras e nomes estrangeiros, além de enfatizar certas expressões em textos. Graficamente apresentam uma forma angular e geométrica.",
             "alphabet": {
                 "A_GYOU": [["ア","a"],["イ","i"],["ウ","u"],["エ","e"],["オ","o"]],
                 "KA_GYOU": [["カ","ka"],["キ","ki"],["ク","ku"],["ケ","ke"],["コ","ko"]],
@@ -19,17 +19,17 @@
                 "DA_GYOU": [["ダ","da"],["ジ","ji"],["ヅ","zu"],["デ","de"],["ド","do"]],
                 "BA_GYOU": [["バ","ba"],["ビ","bi"],["ブ","bu"],["ベ","be"],["ボ","bo"]],
                 "PA_GYOU": [["パ","pa"],["ピ","pi"],["プ","pu"],["ペ","pe"],["ポ","po"]],
-                "KYA-GYOU": [["キャ","kya"],["キュ","kyu"],["キョ","kyo"]],
-                "SHA-GYOU": [["シャ","sha"],["シュ","shu"],["ショ","sho"]],
-                "TCHA-GYOU": [["チャ","tcha"],["チュ","tchu"],["チョ","tcho"]],
-                "NYA-GYOU": [["ニャ","nya"],["ニュ","nyu"],["ニョ","nyo"]],
-                "HYA-GYOU": [["ヒャ","hya"],["ヒュ","hyu"],["ヒョ","hyo"]],
-                "MYA-GYOU": [["ミャ","mya"],["ミュ","myu"],["ミョ","myo"]],
-                "RYA-GYOU": [["リャ","rya"],["リュ","ryu"],["リョ","ryo"]],
-                "GYA-GYOU": [["ギャ","gya"],["ギュ","gyu"],["ギョ","gyo"]],
-                "JA-GYOU": [["ジャ","ja"],["ジュ","ju"],["ジョ","jo"]],
-                "BYA-GYOU": [["ビャ","bya"],["ビュ","byu"],["ビョ","byo"]],
-                "PYA-GYOU": [["ピャ","pya"],["ピュ","pyu"],["ピョ","pyo"]]
+                "KYA_GYOU": [["キャ","kya"],["キュ","kyu"],["キョ","kyo"]],
+                "SHA_GYOU": [["シャ","sha"],["シュ","shu"],["ショ","sho"]],
+                "TCHA_GYOU": [["チャ","tcha"],["チュ","tchu"],["チョ","tcho"]],
+                "NYA_GYOU": [["ニャ","nya"],["ニュ","nyu"],["ニョ","nyo"]],
+                "HYA_GYOU": [["ヒャ","hya"],["ヒュ","hyu"],["ヒョ","hyo"]],
+                "MYA_GYOU": [["ミャ","mya"],["ミュ","myu"],["ミョ","myo"]],
+                "RYA_GYOU": [["リャ","rya"],["リュ","ryu"],["リョ","ryo"]],
+                "GYA_GYOU": [["ギャ","gya"],["ギュ","gyu"],["ギョ","gyo"]],
+                "JA_GYOU": [["ジャ","ja"],["ジュ","ju"],["ジョ","jo"]],
+                "BYA_GYOU": [["ビャ","bya"],["ビュ","byu"],["ビョ","byo"]],
+                "PYA_GYOU": [["ピャ","pya"],["ピュ","pyu"],["ピョ","pyo"]]
             }
         },
         {
@@ -51,17 +51,17 @@
                 "DA_GYOU": [["だ","da"],["ぢ","ji"],["づ","zu"],["で","de"],["ど","do"]],
                 "BA_GYOU": [["ば","ba"],["び","bi"],["ぶ","bu"],["べ","be"],["ぼ","bo"]],
                 "PA_GYOU": [["ぱ","pa"],["ぴ","pi"],["ぷ","pu"],["ぺ","pe"],["ぽ","po"]],
-                "KYA-GYOU": [["きゃ","kya"],["きゅ","kyu"],["きょ","kyo"]],
-                "SHA-GYOU": [["しゃ","sha"],["しゅ","shu"],["しょ","sho"]],
-                "TCHA-GYOU": [["ちゃ","tcha"],["ちゅ","tchu"],["ちょ","tcho"]],
-                "NYA-GYOU": [["にゃ","nya"],["にゅ","nyu"],["にょ","nyo"]],
-                "HYA-GYOU": [["ひゃ","hya"],["ひゅ","hyu"],["ひょ","hyo"]],
-                "MYA-GYOU": [["みゃ","mya"],["みゅ","myu"],["みょ","myo"]],
-                "RYA-GYOU": [["りゃ","rya"],["りゅ","ryu"],["りょ","ryo"]],
-                "GYA-GYOU": [["ぎゃ","gya"],["ぎゅ","gyu"],["ぎょ","gyo"]],
-                "JA-GYOU": [["じゃ","ja"],["じゅ","ju"],["じょ","jo"]],
-                "BYA-GYOU": [["びゃ","bya"],["びゅ","byu"],["びょ","byo"]],
-                "PYA-GYOU": [["ぴゃ","pya"],["ぴゅ","pyu"],["ぴょ","pyo"]]
+                "KYA_GYOU": [["きゃ","kya"],["きゅ","kyu"],["きょ","kyo"]],
+                "SHA_GYOU": [["しゃ","sha"],["しゅ","shu"],["しょ","sho"]],
+                "TCHA_GYOU": [["ちゃ","tcha"],["ちゅ","tchu"],["ちょ","tcho"]],
+                "NYA_GYOU": [["にゃ","nya"],["にゅ","nyu"],["にょ","nyo"]],
+                "HYA_GYOU": [["ひゃ","hya"],["ひゅ","hyu"],["ひょ","hyo"]],
+                "MYA_GYOU": [["みゃ","mya"],["みゅ","myu"],["みょ","myo"]],
+                "RYA_GYOU": [["りゃ","rya"],["りゅ","ryu"],["りょ","ryo"]],
+                "GYA_GYOU": [["ぎゃ","gya"],["ぎゅ","gyu"],["ぎょ","gyo"]],
+                "JA_GYOU": [["じゃ","ja"],["じゅ","ju"],["じょ","jo"]],
+                "BYA_GYOU": [["びゃ","bya"],["びゅ","byu"],["びょ","byo"]],
+                "PYA_GYOU": [["ぴゃ","pya"],["ぴゅ","pyu"],["ぴょ","pyo"]]
             }
         }
     ]

@@ -6,6 +6,7 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from 'next/router'
+import { info } from "node:console"
 import { useContext, useEffect } from "react"
 import { ItemsGameContext } from "../../contexts/ItemsGameContext"
 
@@ -88,8 +89,12 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         >
           Escolha as famílias para estudar
         </Heading>
+        <Text marginTop='0.4rem' fontSize='1.1rem'>
+          (Cada coluna na tabela do {capitalizeFirstLetter(infoAlphabet.name)} é 
+          dita como uma família)
+        </Text>
         <Box as='section' gridArea='buttonsFamilies' display='flex' flexWrap='wrap'
-          marginTop='3rem' width='50rem'
+          marginTop='2.3rem' width='50rem'
         >
           {dataAlphabet.map((family, indexFamily) => (
             <>
