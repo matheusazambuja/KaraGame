@@ -222,10 +222,12 @@ export default function MatchingGame() {
 
   return (
     <Box as='main' display='grid' minHeight='calc(100vh - 6rem)'
-      gridTemplateColumns='1.2fr 1.2fr 0.6fr' gridTemplateRows='1fr'
-      gridTemplateAreas="
-        'leftSide rightSide info'
-      "
+      gridTemplateColumns={{ base: '1fr 1fr', md: '1.2fr 1.2fr 0.6fr' }}
+      gridTemplateRows={{ base: '1.4fr 0.6fr', md: '1fr' }}
+      gridTemplateAreas={{
+        base: " 'leftSide rightSide' 'info info' ",
+        md: " 'leftSide rightSide info' "
+      }}
       background={colorModeObject.backgroundPage}
       color={colorModeObject.textColorPage}
     >
@@ -272,30 +274,48 @@ export default function MatchingGame() {
           </Button>
         ))}
       </Box>
-      <Box as='div' display='flex' padding='0.5rem 0'>
-        <Center height='100%'>
-          <Divider orientation="vertical" />
+      <Box as='div' gridArea='info' display='flex' padding='0.5rem 0'>
+        <Center height='100%' display={{ base: 'none', md: 'block' }}>
+          <Divider orientation='vertical' />
         </Center>
-        <Box gridArea='info' display='flex' marginLeft='auto' marginRight='auto' flexDirection='column' 
-          alignItems='center' marginTop='2rem'
+        <Box display='flex' flexDirection={{ base: 'row', md: 'column' }}
+          marginTop='2rem'
         >
-          <Text as='strong' fontSize='1.3rem' marginBottom='1.6rem'>
-            {capitalizeFirstLetter(nameAlphabet)}
-          </Text>
-          <ImageChakra src={`/${nameAlphabet}.png`} width='10rem' />
-          <Text as='strong' fontSize='1.15rem' marginTop='2.5rem'>
-            Pares restantes
-          </Text>
-          <Text as='strong' fontSize='1.1rem'>
-            {`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}
-          </Text>
+          <Box as='div' display='flex' flexDirection='column' alignItems='center'
+            padding='0 1rem'
+          >
+            <Text as='strong' fontSize='1.3rem' marginBottom='1.6rem'>
+              {capitalizeFirstLetter(nameAlphabet)}
+            </Text>
+            <ImageChakra src={`/${nameAlphabet}.png`} 
+              width={{ base: '7rem', md: '10rem' }} 
+            />
+          </Box>
+          <Box as='div' display='flex' flexDirection='column' alignItems='center'
+            padding='0 0.5rem'
+          >
+            <Text as='strong' fontSize='1.15rem' marginTop={{ base: '1.3rem', md: '2.5rem' }} 
+              textAlign='center'
+            >
+              Pares restantes
+            </Text>
+            <Text as='strong' fontSize='1.1rem'>
+              {`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}
+            </Text>
+          </Box>
 
-          <Text as='strong' fontSize='1.3rem' marginBottom='1rem' marginTop='2.5rem' color='green.100'>
-            Objetivo do jogo:
-          </Text>
-          <Text as='span' fontSize='1.1rem' textAlign='center' padding='0 3rem'>
-            Relacionar corretamente os elementos das duas colunas
-          </Text>
+          <Box as='div' display='flex' flexDirection='column' alignItems='center'>
+            <Text as='strong' fontSize='1.3rem' marginBottom='1rem' color='green.100'
+              textAlign='center'
+            >
+              Objetivo do jogo:
+            </Text>
+            <Text as='span' fontSize='1.1rem' textAlign='center' 
+              padding={{ base: '0 1rem', md: '0 3rem' }}
+            >
+              Relacionar corretamente os elementos das duas colunas
+            </Text>
+          </Box>
 
           {!isFinishedGame && 
             quantityItemsSelectedCorrectly > 0 &&

@@ -23,11 +23,9 @@ export default function Header() {
     <Box as='header' d='flex' alignItems='center'
       background={colorModeObject.backgroundHeader}
       color={colorModeObject.colorHeader}
-      height='6rem'
-      width='100%'
+      height='6rem' width='100%'
 
-      padding='2rem 4rem'
-      borderBottom='1px solid'
+      padding='2rem 4rem' borderBottom='1px solid'
       borderBottomColor={colorModeObject.colorBorderBottom}
 
       transition='all 200ms'

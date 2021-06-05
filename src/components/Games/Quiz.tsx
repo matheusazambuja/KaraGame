@@ -166,13 +166,16 @@ export default function Quiz() {
         'possibleAnswers'
         'progressBar'
       "
-      background={colorModeObject.backgroundPage}
+      background={colorModeObject.backgroundPage} padding={{ base: '0 0.5rem', sm: '0 1rem', lg: '0 3rem' }}
       color={colorModeObject.textColorPage}
     >
       <Box gridArea='feedback' as='div' display='flex'
         alignItems='center' justifyContent='center'
       >
-        <Text as='strong' fontSize='1.4rem' background={colorModeObject.backgroundInfo}>
+        <Text as='strong' fontSize='1.4rem' background={colorModeObject.backgroundInfo}
+          textAlign='center' padding={{ base: '0', lg: '0.5rem 1rem' }}
+          margin={{ base: '0 1rem', lg: '0' }}
+        >
           Selecione a opção correspondente ao elemento
         </Text>
       </Box>
@@ -190,7 +193,7 @@ export default function Quiz() {
           >
             {possiblesTranslate.map(translate => (
               <Button key={`button_${translate}`} onClick={() => setTranslateSelected(translate)}
-                size='lg' margin='0 1rem' textTransform='uppercase'
+                size='md' margin='0 1rem' textTransform='uppercase'
               >
                 {translate}
               </Button>
@@ -229,7 +232,7 @@ export default function Quiz() {
       )}
 
       <Progress gridArea='progressBar' value={Math.floor(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}
-        margin='0 20rem' borderRadius='10px' colorScheme='whatsapp'
+        borderRadius='10px' colorScheme='whatsapp'
       />
     </Box>
   )

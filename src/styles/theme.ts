@@ -17,10 +17,6 @@ export const customTheme = extendTheme({
         background: 'gray.50'
       },
 
-      'html, body': {
-        height: '100%'
-      },
-
       'body, input, textarea, button': {
         font: '500 1rem Inter, sans-serif',
       },

@@ -6,7 +6,6 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from 'next/router'
-import { info } from "node:console"
 import { useContext, useEffect } from "react"
 import { ItemsGameContext } from "../../contexts/ItemsGameContext"
 
@@ -59,6 +58,48 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     colorCheckButton: useColorModeValue('white', 'green'),
   }
 
+  const HowDoYouWantToStudy = (
+    <>
+      {itemsInGameInformation.length >= 1 && (
+        <>
+          <Text as='strong' fontSize='1.3rem' marginTop='1.2rem'>
+            Como deseja estudar?
+          </Text>
+          <Box as='div' display='flex' alignItems='center' justifyContent='center'
+            width='100%' marginTop='2.4rem'
+          >
+            <Link href='/game/matching-elements'>
+              <Button size='lg' marginRight='2rem' 
+                colorScheme='whatsapp'
+              >
+                <LinkChakra
+                  _hover={{
+                    textDecoration: 'none'
+                  }}
+                >
+                  Relacionar elementos
+                </LinkChakra>
+              </Button>
+            </Link>
+            <Link href='/game/quiz'>
+              <Button size='lg'
+                colorScheme='whatsapp'
+              >
+                <LinkChakra
+                  _hover={{
+                    textDecoration: 'none'
+                  }}
+                >
+                  Quiz
+                </LinkChakra>
+              </Button>
+            </Link>
+          </Box>
+        </>
+      )}
+    </>
+  )
+
   function handleFamilySelected(nameFamily: string) {
 
     if (itemsInGameInformation.length === 0) return false;
@@ -76,25 +117,32 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
 
   return (
     <Box as='main' minHeight='calc(100vh - 6rem)' display='flex'
-      width='100vw' background={colorModeObject.backgroundHome}
+      flexDirection={{
+        base: 'column-reverse',
+        xl2: 'row'
+      }}
+      width='100%' background={colorModeObject.backgroundHome}
       color={colorModeObject.textColorHome}
     >
       <Head>
         <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
       </Head>
       <Box as='div' display='flex' flexDirection='column' alignItems='center'
-        height='100%' width='100%' margin='0 2rem' marginBottom='3rem' alignSelf='center'
+        padding={{ base: '0 2rem', xl2: '3rem 2rem' }}
       >
-        <Heading color={colorModeObject.textColorHome}
-        >
+        <Heading color={colorModeObject.textColorHome} textAlign={{
+          base: 'center', lg: 'left'
+        }}>
           Escolha as famílias para estudar
         </Heading>
-        <Text marginTop='0.4rem' fontSize='1.1rem'>
+        <Text marginTop='0.4rem' fontSize='1.1rem' textAlign={{
+          base: 'center', lg: 'left'
+        }}>
           (Cada coluna na tabela do {capitalizeFirstLetter(infoAlphabet.name)} é 
           dita como uma família)
         </Text>
         <Box as='section' gridArea='buttonsFamilies' display='flex' flexWrap='wrap'
-          marginTop='2.3rem' width='50rem'
+          marginTop='2.3rem' width='100%'
         >
           {dataAlphabet.map((family, indexFamily) => (
             <>
@@ -102,7 +150,12 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
                 <Button key={`${family.name}_${indexFamily}_s`} onClick={() => selectToggleItemGame(
                   family.name, family.characters)}
 
-                  flex='1 0 20%' margin='0.4rem' size='lg'
+                  flex={{
+                    base: '1 0 60%',
+                    sm: '1 0 40%',
+                    md: '1 0 30%',
+                    lg: '1 0 20%'
+                  }} margin='0.4rem' size='lg'
                   colorScheme='whatsapp'
                   leftIcon={<FontAwesomeIcon icon='check-circle' color={colorModeObject.colorCheckButton} />}
                 >
@@ -114,7 +167,12 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
                 <Button key={`${family.name}_${indexFamily}`} onClick={() => selectToggleItemGame(
                   family.name, family.characters)}
 
-                  flex='1 0 20%' margin='0.4rem' size='lg'
+                  flex={{
+                    base: '1 0 60%',
+                    sm: '1 0 40%',
+                    md: '1 0 30%',
+                    lg: '1 0 20%'
+                  }} margin='0.4rem' size='lg'
                   leftIcon={<FontAwesomeIcon icon='circle' />}
                   variant='outline'
                 >
@@ -126,13 +184,21 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
             </>
           ))}
         </Box>
+        <Box display={{ base: 'flex', xl2: 'none' }} alignItems='center' flexDirection='column'
+          paddingBottom='3rem' paddingTop='1rem'
+        >
+          {HowDoYouWantToStudy}
+        </Box>
       </Box>
       <Center margin='2rem 0'>
         <Divider orientation="vertical" />
       </Center>
       <Box as='div' gridArea='startGame' display='flex' alignItems='center' 
         flexDirection='column' justifyContent='center' height='100%' width='100%'
-        padding='2rem' marginTop='2rem' marginBottom='3rem'
+        padding='2rem' marginTop={{
+          base: '1rem',
+          xl2: '2rem'
+        }}
       >
         <Text as='strong' fontSize='2.5rem' textTransform='capitalize'
           marginBottom='2rem'
@@ -147,41 +213,9 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
             {infoAlphabet.infoText}
           </Text>
         </Box>
-        <Text as='strong' fontSize='1.3rem' marginTop='1.2rem'>
-          Como deseja estudar?
-        </Text>
-        {itemsInGameInformation.length >= 1 && (
-          <Box as='div' display='flex' alignItems='center' justifyContent='center'
-            width='100%' padding='0 1rem' marginTop='2.4rem'
-          >
-            <Link href='/game/matching-elements'>
-              <Button size='lg' flex='1 0 50%' marginRight='2rem' 
-                colorScheme='whatsapp'
-              >
-                <LinkChakra
-                  _hover={{
-                    textDecoration: 'none'
-                  }}
-                >
-                  Relacionar elementos
-                </LinkChakra>
-              </Button>
-            </Link>
-            <Link href='/game/quiz'>
-              <Button size='lg' flex='1 0 50%'
-                colorScheme='whatsapp'
-              >
-                <LinkChakra
-                  _hover={{
-                    textDecoration: 'none'
-                  }}
-                >
-                  Quiz
-                </LinkChakra>
-              </Button>
-            </Link>
-          </Box>
-        )}
+        <Box display={{ base: 'none', xl2: 'flex' }} alignItems='center' flexDirection='column'>
+          {HowDoYouWantToStudy}
+        </Box>
       </Box>
     </Box>
   )
