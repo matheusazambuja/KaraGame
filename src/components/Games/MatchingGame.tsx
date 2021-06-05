@@ -288,24 +288,27 @@ export default function MatchingGame() {
               {capitalizeFirstLetter(nameAlphabet)}
             </Text>
             <ImageChakra src={`/${nameAlphabet}.png`} 
-              width={{ base: '7rem', md: '10rem' }} 
+              width='10rem'
             />
-          </Box>
-          <Box as='div' display='flex' flexDirection='column' alignItems='center'
-            padding='0 0.5rem'
-          >
-            <Text as='strong' fontSize='1.15rem' marginTop={{ base: '1.3rem', md: '2.5rem' }} 
-              textAlign='center'
+            <Box as='div' display='flex' flexDirection='column' alignItems='center'
+              padding='0 0.5rem'
             >
-              Pares restantes
-            </Text>
-            <Text as='strong' fontSize='1.1rem'>
-              {`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}
-            </Text>
+              <Text as='strong' fontSize='1.15rem' paddingTop={{ base: '1.8rem', md: '2.5rem' }}
+                paddingBottom={{ base: '1rem', md: '0' }}
+                textAlign='center'
+              >
+                Pares restantes
+              </Text>
+              <Text as='strong' fontSize='1.1rem'>
+                {`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}
+              </Text>
+            </Box>
           </Box>
 
           <Box as='div' display='flex' flexDirection='column' alignItems='center'>
-            <Text as='strong' fontSize='1.3rem' marginBottom='1rem' color='green.100'
+            <Text as='strong' fontSize='1.3rem' marginBottom='1rem' 
+              marginTop={{ base: '0', md: '2.5rem' }}
+              color='green.100'
               textAlign='center'
             >
               Objetivo do jogo:
@@ -315,35 +318,34 @@ export default function MatchingGame() {
             >
               Relacionar corretamente os elementos das duas colunas
             </Text>
-          </Box>
+            {!isFinishedGame && 
+              quantityItemsSelectedCorrectly > 0 &&
+              quantityItemsSelectedCorrectly < itemsLeftSide.length
+              && (
+                <>
+                  <Button marginTop='3rem' colorScheme='green' onClick={() => setDefaultStateGame()}>
+                    Reiniciar jogo
+                  </Button>
+                </>
+              )
+            }
 
-          {!isFinishedGame && 
-            quantityItemsSelectedCorrectly > 0 &&
-            quantityItemsSelectedCorrectly < itemsLeftSide.length
-            && (
+            {isFinishedGame && (
               <>
-                <Button marginTop='3rem' colorScheme='green' onClick={() => setDefaultStateGame()}>
-                  Reiniciar jogo
+                <Text as='strong' marginTop='3rem'>
+                  Parabéns!!!
+                </Text>
+                <Button marginTop='2rem' colorScheme='green' onClick={() => setDefaultStateGame()}>
+                  Estudar novamente
+                </Button>
+                <Button marginTop='2rem' marginBottom='3rem' colorScheme='green'>
+                  <Link href={`/alphabet/${nameAlphabet}`}>
+                    Estudar outras famílias
+                  </Link>
                 </Button>
               </>
-            )
-          }
-
-          {isFinishedGame && (
-            <>
-              <Text as='strong' marginTop='3rem'>
-                Parabéns!!!
-              </Text>
-              <Button marginTop='2rem' colorScheme='green' onClick={() => setDefaultStateGame()}>
-                Estudar novamente
-              </Button>
-              <Button marginTop='2rem' marginBottom='3rem' colorScheme='green'>
-                <Link href={`/alphabet/${nameAlphabet}`}>
-                  Estudar outras famílias
-                </Link>
-              </Button>
-            </>
-          )}
+            )}
+          </Box>
         </Box>
       </Box>
     </Box>
