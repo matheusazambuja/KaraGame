@@ -7,9 +7,9 @@ import Link from "next/link";
 export default function Home() {
 
   const colorModeObject = {
-    backgroundHome: useColorModeValue('', 'gray.800'),
+    backgroundHome: useColorModeValue('', 'gray.700'),
     backgroundInfo: useColorModeValue('gray.50', ''),
-    textColorHome: useColorModeValue('gray.800', 'white')
+    textColorHome: useColorModeValue('gray.800', 'gray.100')
   }
   
   return (

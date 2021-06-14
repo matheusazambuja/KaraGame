@@ -216,7 +216,7 @@ export default function MatchingGame() {
   }
 
   const colorModeObject = {
-    backgroundPage: useColorModeValue('', 'gray.800'),
+    backgroundPage: useColorModeValue('', 'gray.700'),
     textColorPage: useColorModeValue('', 'gray.100')
   }
 

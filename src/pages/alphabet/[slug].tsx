@@ -6,8 +6,8 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from "react"
-import { ItemsGameContext } from "../../contexts/ItemsGameContext"
+import { useEffect } from "react"
+import { useItemsGame } from "../../hooks/useItemsGame"
 
 import { api } from "../../services/api"
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
@@ -32,7 +32,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     itemsInGameInformation,
     selectToggleItemGame,
     resetItemsInGame
-  } = useContext(ItemsGameContext)
+  } = useItemsGame();
 
   const router = useRouter()
   const { slug } = router.query
@@ -51,7 +51,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   }, [])
 
   const colorModeObject = {
-    backgroundHome: useColorModeValue('', 'gray.800'),
+    backgroundHome: useColorModeValue('', 'gray.700'),
     backgroundButton: useColorModeValue('gray.300', 'gray.850'),
     backgroundInfo: useColorModeValue('gray.50', ''),
     textColorHome: useColorModeValue('', 'gray.100'),

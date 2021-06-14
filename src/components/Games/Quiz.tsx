@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Text } from "@chakra-ui/layout";
-import { ButtonProps, Progress, useColorModeValue } from "@chakra-ui/react";
+import { Progress, useColorModeValue } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
@@ -152,7 +152,7 @@ export default function Quiz() {
   }
 
   const colorModeObject = {
-    backgroundPage: useColorModeValue('', 'gray.800'),
+    backgroundPage: useColorModeValue('', 'gray.700'),
     backgroundInfo: useColorModeValue('gray.100', ''), 
     textColorPage: useColorModeValue('', 'gray.100')
   }

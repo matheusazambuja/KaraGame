@@ -1,58 +1,55 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import Cookies from 'js-cookie';
+import { createContext } from 'use-context-selector'
 
 
 type ItemInformation = {
   name: string;
   characters: String[];
-}
+};
 
 type ItemsGameContextData = {
   itemsInGameInformation: ItemInformation[];
   selectToggleItemGame: (name: string, characters: String[]) => void;
   resetItemsInGame: () => void;
-}
+};
 
 type ItemsGameProviderProps = {
   children: ReactNode
-}
+};
 
-export const ItemsGameContext = createContext(
-  {} as ItemsGameContextData
-)
+export const ItemsGameContext = createContext({} as ItemsGameContextData);
 
 
-export function ItemsGameProvider({
-  children
-}: ItemsGameProviderProps) {
+export function ItemsGameProvider({ children }: ItemsGameProviderProps) {
 
-  const [itemsInGameInformation, setItemsInGameInformation] = useState<ItemInformation[]>([])
+  const [itemsInGameInformation, setItemsInGameInformation] = useState<ItemInformation[]>([]);
 
   useEffect(() => {
-    const dataCookies = Cookies.getJSON('KaraGameInformation')
+    const dataCookies = Cookies.getJSON('KaraGameInformation');
 
     if (!dataCookies) {
       Cookies.set('KaraGameInformation', JSON.stringify({
         nameAlphabet: '',
         itemsAlphabetInGame: []
       }))
-      setItemsInGameInformation([])
+      setItemsInGameInformation([]);
 
       return;
     }
 
     setItemsInGameInformation(dataCookies.itemsAlphabetInGame)
-  }, [])
+  }, []);
 
-  function selectToggleItemGame(nameItemSelected: string, characters: String[]) {
+  const selectToggleItemGame = useCallback((nameItemSelected: string, characters: String[]) => {
 
-    const indexFamily = itemsInGameInformation.findIndex(
+    const familyExists = itemsInGameInformation.some(
       family => family.name === nameItemSelected
     )
 
     const dataCookiesInformation = Cookies.getJSON('KaraGameInformation')
 
-    if (indexFamily === -1) {
+    if (!familyExists) {
       const itemsInformationUpdated = [ ...itemsInGameInformation, { name: nameItemSelected, characters }]
 
       Cookies.set('KaraGameInformation', JSON.stringify({
@@ -61,9 +58,7 @@ export function ItemsGameProvider({
       }))
       setItemsInGameInformation(itemsInformationUpdated)
     } else {
-      const itemsInformationUpdated = itemsInGameInformation.filter(family => 
-        family.name !== nameItemSelected
-      )
+      const itemsInformationUpdated = itemsInGameInformation.filter(family => family.name !== nameItemSelected)
 
       Cookies.set('KaraGameInformation', JSON.stringify({
         ...dataCookiesInformation,
@@ -71,11 +66,11 @@ export function ItemsGameProvider({
       }))
       setItemsInGameInformation(itemsInformationUpdated)
     }
-  }
+  }, [itemsInGameInformation]);
 
-  function resetItemsInGame() {
-    setItemsInGameInformation([])
-  }
+  const resetItemsInGame = useCallback(() => {
+    setItemsInGameInformation([]);
+  }, []);
 
   return (
     <ItemsGameContext.Provider value={{

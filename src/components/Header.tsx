@@ -14,8 +14,8 @@ export default function Header() {
       <FontAwesomeIcon icon='sun' color='white' />
     ),
     backgroundButtonToggle: useColorModeValue('gray.50', 'transparent'),
-    backgroundHeader: useColorModeValue('white', 'gray.850'),
-    colorBorderBottom: useColorModeValue('gray.100', 'gray.900'),
+    backgroundHeader: useColorModeValue('white', 'gray.600'),
+    colorBorderBottom: useColorModeValue('gray.100', 'gray.500'),
     colorHeader: useColorModeValue('', 'gray.100')
   }
   
