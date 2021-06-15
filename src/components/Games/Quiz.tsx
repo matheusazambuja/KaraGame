@@ -152,7 +152,7 @@ export default function Quiz() {
   }
 
   const colorModeObject = {
-    backgroundPage: useColorModeValue('', 'gray.700'),
+    backgroundPage: useColorModeValue('', 'gray.600'),
     backgroundInfo: useColorModeValue('gray.100', ''), 
     textColorPage: useColorModeValue('', 'gray.100')
   }
@@ -169,7 +169,7 @@ export default function Quiz() {
       background={colorModeObject.backgroundPage} padding={{ base: '0 0.5rem', sm: '0 1rem', lg: '0 3rem' }}
       color={colorModeObject.textColorPage}
     >
-      <Box gridArea='feedback' as='div' display='flex'
+      <Box as='div' gridArea='feedback' display='flex'
         alignItems='center' justifyContent='center'
       >
         <Text as='strong' fontSize='1.4rem' background={colorModeObject.backgroundInfo}
@@ -204,7 +204,7 @@ export default function Quiz() {
 
       {isFinishedGame && (
         <>
-          <Box gridArea='askedSymbol' display='flex' alignItems='center' 
+          <Box as='div' gridArea='askedSymbol' display='flex' alignItems='center' 
             justifyContent='center'
           >
             <Text as='strong' fontSize='3rem' fontStyle='italic' border='1px solid'
@@ -214,7 +214,7 @@ export default function Quiz() {
               Parabéns!!!
             </Text>
           </Box>
-          <Box gridArea='possibleAnswers' as='div' display='flex'
+          <Box as='div' gridArea='possibleAnswers' display='flex'
             justifyContent='center' padding='1rem' marginTop='1rem'
           >
             <Button onClick={() => setDefaultStateGame()}
@@ -231,8 +231,8 @@ export default function Quiz() {
         </>
       )}
 
-      <Progress gridArea='progressBar' value={Math.floor(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}
-        borderRadius='10px' colorScheme='whatsapp'
+      <Progress gridArea='progressBar' borderRadius='10px' colorScheme='whatsapp'
+        value={Math.floor(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}
       />
     </Box>
   )

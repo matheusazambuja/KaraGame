@@ -216,7 +216,7 @@ export default function MatchingGame() {
   }
 
   const colorModeObject = {
-    backgroundPage: useColorModeValue('', 'gray.700'),
+    backgroundPage: useColorModeValue('', 'gray.600'),
     textColorPage: useColorModeValue('', 'gray.100')
   }
 
@@ -231,7 +231,7 @@ export default function MatchingGame() {
       background={colorModeObject.backgroundPage}
       color={colorModeObject.textColorPage}
     >
-      <Box gridArea='leftSide' display='flex' flexWrap='wrap' height='fit-content'
+      <Box as='section' gridArea='leftSide' display='flex' flexWrap='wrap' height='fit-content'
         borderRight='1.5px solid' borderRightColor='blackAlpha.300'
         margin='2rem 0'
       >
@@ -253,7 +253,7 @@ export default function MatchingGame() {
           </Button>
         ))}
       </Box>
-      <Box gridArea='rightSide' display='flex' flexWrap='wrap' height='fit-content'
+      <Box as='section' gridArea='rightSide' display='flex' flexWrap='wrap' height='fit-content'
         borderLeft='1.5px solid' borderLeftColor='blackAlpha.300' 
         margin='2rem 0'
       >
@@ -274,11 +274,11 @@ export default function MatchingGame() {
           </Button>
         ))}
       </Box>
-      <Box as='div' gridArea='info' display='flex' padding='0.5rem 0'>
+      <Box as='section' gridArea='info' display='flex' padding='0.5rem 0'>
         <Center height='100%' display={{ base: 'none', md: 'block' }}>
           <Divider orientation='vertical' />
         </Center>
-        <Box display='flex' flexDirection={{ base: 'row', md: 'column' }}
+        <Box as='div' display='flex' flexDirection={{ base: 'row', md: 'column' }}
           marginTop='2rem'
         >
           <Box as='div' display='flex' flexDirection='column' alignItems='center'

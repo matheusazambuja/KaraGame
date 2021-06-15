@@ -1,5 +1,7 @@
 import { Box, Center, Divider, Heading, Link as LinkChakra, Text } from "@chakra-ui/layout"
-import { Button, useColorModeValue } from "@chakra-ui/react"
+import { Button, Popover, PopoverTrigger, PopoverContent, PopoverHeader,
+  PopoverBody, PopoverFooter, PopoverArrow, useColorModeValue, PopoverCloseButton,
+  Stack } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Cookies from "js-cookie"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -51,10 +53,11 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   }, [])
 
   const colorModeObject = {
-    backgroundHome: useColorModeValue('', 'gray.700'),
+    backgroundHome: useColorModeValue('', 'gray.600'),
     backgroundButton: useColorModeValue('gray.300', 'gray.850'),
     backgroundInfo: useColorModeValue('gray.50', ''),
-    textColorHome: useColorModeValue('', 'gray.100'),
+    textColorHome: useColorModeValue('gray.800', 'gray.100'),
+    textColorSecondary: useColorModeValue('', 'gray.200'),
     colorCheckButton: useColorModeValue('white', 'green'),
   }
 
@@ -127,17 +130,23 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
       <Head>
         <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
       </Head>
-      <Box as='div' display='flex' flexDirection='column' alignItems='center'
-        padding={{ base: '0 2rem', xl2: '3rem 2rem' }}
+      <Box as='header' display='flex' flexDirection='column' alignItems='center'
+        padding={{ base: '0 1rem', lg: '3rem 2rem' }}
       >
-        <Heading color={colorModeObject.textColorHome} textAlign={{
-          base: 'center', lg: 'left'
-        }}>
+        <Box as='h3' textAlign={{ base: 'center', lg: 'left' }}
+          fontSize={{ base: '1.15rem', lg: '2.3rem' }}
+          color={colorModeObject.textColorHome}
+        >
           Escolha as famílias para estudar
-        </Heading>
-        <Text marginTop='0.4rem' fontSize='1.1rem' textAlign={{
-          base: 'center', lg: 'left'
-        }}>
+        </Box>
+        <Text fontSize={{
+            base: '0.8rem', lg: '1.1rem'
+          }} textAlign={{
+            base: 'center', lg: 'left'
+          }} marginTop={{
+            base: '0.6rem', lg: '0.4rem'
+          }} padding='0 2rem' color={colorModeObject.textColorSecondary}
+        >
           (Cada coluna na tabela do {capitalizeFirstLetter(infoAlphabet.name)} é 
           dita como uma família)
         </Text>
@@ -190,29 +199,46 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
           {HowDoYouWantToStudy}
         </Box>
       </Box>
-      <Center margin='2rem 0'>
+      <Center display={{ base: 'none', lg: 'block' }} margin='2rem 0'>
         <Divider orientation="vertical" />
       </Center>
       <Box as='div' gridArea='startGame' display='flex' alignItems='center' 
-        flexDirection='column' justifyContent='center' height='100%' width='100%'
-        padding='2rem' marginTop={{
+        flexDirection='column' justifyContent='center'
+        padding='0 2rem' paddingTop={{
           base: '1rem',
-          xl2: '2rem'
-        }}
+          lg: '0'
+        }} 
       >
-        <Text as='strong' fontSize='2.5rem' textTransform='capitalize'
-          marginBottom='2rem'
+        <Stack direction='row' spacing={6} as='section' display='flex' 
+          alignItems='center' marginBottom={{
+            base: '1rem', lg: '0'
+          }}
         >
-          {infoAlphabet.name}
-        </Text>
-        <Box background={colorModeObject.backgroundInfo} textAlign='center'
-          border='1px solid' borderColor='blackAlpha.100' boxShadow='1px 1px 13px -1px rgba(0,0,0,0.13)'
-          margin='0.5rem' padding='1rem' borderRadius='10px'
-        >
-          <Text as='span' fontSize='1.3rem' lineHeight='1.8rem'>
-            {infoAlphabet.infoText}
+          <Text as='strong' fontSize={{
+              base: '2.1rem', lg: '2.5rem'
+            }} textTransform='capitalize'
+          >
+            {infoAlphabet.name}
           </Text>
-        </Box>
+          <Popover>
+            <PopoverTrigger>
+              <Button colorScheme='linkedin' size='xs'>
+                <FontAwesomeIcon icon='info'/>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent width={{ base: '85vw', lg: '70vw' }}
+              padding='1rem' lineHeight={{ base: '1.4rem', lg: '1.8rem' }}
+
+            >
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader fontWeight='600' letterSpacing='1px' textTransform='uppercase'>
+                {infoAlphabet.name}
+              </PopoverHeader>
+              <PopoverBody>{infoAlphabet.infoText}</PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </Stack>
         <Box display={{ base: 'none', xl2: 'flex' }} alignItems='center' flexDirection='column'>
           {HowDoYouWantToStudy}
         </Box>

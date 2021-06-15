@@ -7,13 +7,13 @@ import Link from "next/link";
 export default function Home() {
 
   const colorModeObject = {
-    backgroundHome: useColorModeValue('', 'gray.700'),
+    backgroundHome: useColorModeValue('', 'gray.600'),
     backgroundInfo: useColorModeValue('gray.50', ''),
     textColorHome: useColorModeValue('gray.800', 'gray.100')
   }
   
   return (
-    <Box d='flex' flexDirection='column' padding={{
+    <Box as='main' d='flex' flexDirection='column' padding={{
       base: '0 3rem',
       md: '0 7.5rem',
       lg: '0 15rem 0 17rem'
