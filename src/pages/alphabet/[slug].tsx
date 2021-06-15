@@ -121,8 +121,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   return (
     <Box as='main' minHeight='calc(100vh - 6rem)' display='flex'
       flexDirection={{
-        base: 'column-reverse',
-        xl2: 'row'
+        base: 'column-reverse', lg: 'row'
       }}
       width='100%' background={colorModeObject.backgroundHome}
       color={colorModeObject.textColorHome}
@@ -134,7 +133,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         padding={{ base: '0 1rem', lg: '3rem 2rem' }}
       >
         <Box as='h3' textAlign={{ base: 'center', lg: 'left' }}
-          fontSize={{ base: '1.15rem', lg: '2.3rem' }}
+          fontSize={{ base: '1.15rem', md: '1.5rem', lg: '2.3rem' }}
           color={colorModeObject.textColorHome}
         >
           Escolha as famílias para estudar
@@ -164,13 +163,11 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
                     sm: '1 0 40%',
                     md: '1 0 30%',
                     lg: '1 0 20%'
-                  }} margin='0.4rem' size='lg'
+                  }} margin='0.4rem' size='md'
                   colorScheme='whatsapp'
                   leftIcon={<FontAwesomeIcon icon='check-circle' color={colorModeObject.colorCheckButton} />}
                 >
-                  <Text as='span'>
-                    {`${family.name}`}
-                  </Text>
+                  {`${family.name}`}
                 </Button>
               ) : (
                 <Button key={`${family.name}_${indexFamily}`} onClick={() => selectToggleItemGame(
@@ -181,19 +178,17 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
                     sm: '1 0 40%',
                     md: '1 0 30%',
                     lg: '1 0 20%'
-                  }} margin='0.4rem' size='lg'
+                  }} margin='0.4rem' size='md'
                   leftIcon={<FontAwesomeIcon icon='circle' />}
                   variant='outline'
                 >
-                  <Text as='span'>
-                    {`${family.name}`}
-                  </Text>
+                  {`${family.name}`}
                 </Button>
               )}
             </>
           ))}
         </Box>
-        <Box display={{ base: 'flex', xl2: 'none' }} alignItems='center' flexDirection='column'
+        <Box display={{ base: 'flex', lg: 'none' }} alignItems='center' flexDirection='column'
           paddingBottom='3rem' paddingTop='1rem'
         >
           {HowDoYouWantToStudy}
@@ -212,6 +207,8 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         <Stack direction='row' spacing={6} as='section' display='flex' 
           alignItems='center' marginBottom={{
             base: '1rem', lg: '0'
+          }} marginTop={{
+            base: '2rem', md: '2rem'
           }}
         >
           <Text as='strong' fontSize={{
@@ -228,7 +225,9 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
             </PopoverTrigger>
             <PopoverContent width={{ base: '85vw', lg: '70vw' }}
               padding='1rem' lineHeight={{ base: '1.4rem', lg: '1.8rem' }}
-
+              margin={{
+                base: '0 1rem', md: '0'
+              }}
             >
               <PopoverArrow />
               <PopoverCloseButton />
@@ -239,7 +238,7 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
             </PopoverContent>
           </Popover>
         </Stack>
-        <Box display={{ base: 'none', xl2: 'flex' }} alignItems='center' flexDirection='column'>
+        <Box display={{ base: 'none', lg: 'flex' }} alignItems='center' flexDirection='column'>
           {HowDoYouWantToStudy}
         </Box>
       </Box>

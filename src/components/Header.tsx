@@ -55,13 +55,16 @@ export default function Header() {
         </Link>
         <Flex display={{ base: 'none', md: 'flex' }} bg='transparent' 
           color={useColorModeValue('gray.600', 'white')}
-          minH={'60px'} align={'center'}
+          minH={'60px'} align={'center'} borderBottom={{
+            base: '1px solid', md: '0px'
+          }}
+          borderBottomColor={colorModeObject.colorBorderBottom}
         >
           <DesktopNav />
         </Flex>
 
         <Button onClick={toggleColorMode} size='sm' marginLeft='auto' fontSize={{
-            base: '1.1rem', lg: '1.5rem'
+            base: '1.1rem', lg: '1.2rem'
           }}
         >
           {colorModeObject.iconButtonToggle}
@@ -121,7 +124,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
     <LinkChakra href={href} role='group' display='block' p={2}
       rounded='md' textDecoration='none'
       _hover={{
-        bg: useColorModeValue('gray.100', 'gray.900') 
+        filter: 'brightness(0.9)'
       }}
     >
       <Stack direction='row' align='center'>
@@ -136,8 +139,9 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
         <Flex transition={'all 300ms ease'} transform={'translateX(-10px)'}
           opacity={0}
           _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-          justify={'flex-end'} align={'center'} flex={1}>
-          {/* <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} /> */}
+          justify={'flex-end'} align={'center'} flex={1}
+        >
+          <FontAwesomeIcon icon='chevron-right' />
         </Flex>
       </Stack>
     </LinkChakra>
@@ -148,7 +152,8 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack bg={useColorModeValue('white', 'gray.600')}
-      p={4} display={{ md: 'none' }}
+      p={4} display={{ md: 'none' }} borderBottom='1px solid'
+      borderBottomColor={useColorModeValue('gray.100', 'gray.500')}
     >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
@@ -173,19 +178,20 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {label}
         </Text>
-        {/* {children && (
+        {children && (
           <FontAwesomeIcon icon='times'/>
-        )} */}
+        )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+      <Collapse in={isOpen} animateOpacity>
         <Stack mt={2} pl={4} borderLeft={1} borderStyle={'solid'}
-          borderColor={useColorModeValue('gray.200', 'gray.700')}
+          borderColor={useColorModeValue('gray.100', 'gray.500')}
           align={'start'}
         >
-          {children &&
-            children.map((child) => (
-              <LinkChakra key={child.label} py={2} href={child.href}>
+          {children && children.map((child) => (
+              <LinkChakra key={child.label} py={2} href={child.href}
+                color={useColorModeValue('gray.600', 'gray.200')}
+              >
                 {child.label}
               </LinkChakra>
             ))}
