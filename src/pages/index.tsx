@@ -1,103 +1,56 @@
-import { Button } from "@chakra-ui/button";
-import { Box, Heading, Link as LinkChakra, ListItem, Text, UnorderedList } from "@chakra-ui/layout";
-import { useColorModeValue } from "@chakra-ui/react";
-import Head from "next/head";
-import Link from "next/link";
+import Image from 'next/image';
+import { useTheme } from '../hooks/useTheme';
+
+import styles from '../styles/index.module.scss';
 
 export default function Home() {
 
-  const colorModeObject = {
-    backgroundHome: useColorModeValue('', 'gray.600'),
-    backgroundInfo: useColorModeValue('gray.50', ''),
-    textColorHome: useColorModeValue('gray.800', 'gray.100')
-  }
-  
+  const {
+    theme
+  } = useTheme();
+
+  // const colorModeObject = {
+  //   backgroundHome: useColorModeValue('', 'gray.600'),
+  //   backgroundInfo: useColorModeValue('gray.50', ''),
+  //   textColorHome: useColorModeValue('gray.800', 'gray.100')
+  // }
+
   return (
-    <Box as='main' d='flex' flexDirection='column' padding={{
-      base: '0 3rem',
-      md: '0 7.5rem',
-      lg: '0 15rem 0 17rem'
-    }}
-      alignItems='flex-start' minHeight='calc(100vh - 6rem)'
-      background={colorModeObject.backgroundHome} width='100%'
-    >
-      <Head>
+    <main id={styles.mainContent} className={theme === 'light' ?
+      styles.mainLight : styles.mainDark
+    }>
+      <head>
         <title>Home - KaraGame</title>
-      </Head>
-      <Heading paddingTop='1.5rem' fontSize={{
-        base: '3rem',
-        lg: '4.5rem'
-      }}
-        color={colorModeObject.textColorHome}
-      >
-        KaraGame
-      </Heading>
-      <Text fontSize={["sm", "md", "lg", "xl"]} lineHeight={{
-        base: '1.4rem',
-        lg: '2.2rem'
-      }} marginTop='2.2rem'>
-        Este aplicativo foi criado com o objetivo de auxiliar no início do seu aprendizado na língua japonesa 
-        aprendendo o Hiragana e o Katakana.
-      </Text>
-      <Text as='strong' fontSize={["1.15rem", "md", "lg", "xl"]} marginTop='2rem'>
-        Mas o que são o <i>Hiragana</i> e o <i>Katakana</i>? 🤔
-      </Text>
-      <Text as='span' fontSize={["sm", "md", "lg", "xl"]} marginTop='1.9rem'>
-        O Hiragana (ひらがな) e Katakana (カタカナ) são 
-        silabários da escrita japonesa. Cada um tem suas aplicações:
-      </Text>
-      <UnorderedList width='fit-content' marginTop='1rem' 
-        padding='0 1.4rem'
-      >
-        <ListItem fontSize={["sm", "md", "lg", "xl"]} lineHeight={{
-            base: '1.4rem',
-            lg: '2rem'
-          }}
-        >
-          Usamos muito o Hiragana para escrever os kanjis e garantir um melhor 
-          entendimento do leitor. Além de serem usados como partículas gramáticas;
-        </ListItem>
-        <ListItem fontSize={["sm", "md", "lg", "xl"]} lineHeight={{
-            base: '1.4rem',
-            lg: '2rem'
-          }}
-        >
-          O Katakana é usado principalmente para escrever palavras de origem estrangeiras;
-        </ListItem>
-      </UnorderedList>
-      <Text as='strong' alignSelf='center' fontSize={["1.15rem", "md", "lg", "xl"]} marginTop='2.5rem'>
-        Divirta-se iniciando seus estudos! 🧠
-      </Text>
-      <Box as='section' display='flex' justifyContent='space-around' alignSelf='center'
-        marginTop='1.5rem' marginBottom='2rem'
-      >
-        <Link href='/alphabet/hiragana'>
-          <Button size='lg' flex='1 0 50%' marginRight='2rem'
-            colorScheme='whatsapp' fontSize={["1.1rem", "md", "lg", "xl"]} minWidth='fit-content'
-          >
-            <LinkChakra
-              _hover={{
-                textDecoration: 'none'
-              }}
-            >
-              Hiragana
-            </LinkChakra>
-          </Button>
-        </Link>
-        <Link href='/alphabet/katakana'>
-          <Button size='lg' flex='1 0 50%' colorScheme='whatsapp'
-            fontSize={["1.1rem", "md", "lg", "xl"]} minWidth='fit-content'
-          >
-            <LinkChakra
-              _hover={{
-                textDecoration: 'none'
-              }}
-            >
-              Katakana
-            </LinkChakra>
-          </Button>
-        </Link>
-      </Box>
-    </Box>
+      </head>
+
+      <div className={styles.imgContainer}>
+        <Image src='/questions.svg' alt="Imagem de perguntas na Home"
+          width='600px' height='422px'
+        />
+      </div>
+      <h1>KaraGame</h1>
+      <p className={styles.firstParagraph}>O site tem como objetivo auxiliar no começo do seu estudo da língua japonesa.
+        Queremos condensar algumas informações úteis para quem está
+        iniciando nessa jornada, assim como nós.
+      </p>
+      <strong className={styles.firstParagraph}>Mas por onde devo começar a estudar? 🤔</strong>
+      <p>Essa é uma das dúvidas mais frequente de quem está começando e a
+        resposta é:
+      </p>
+      <p>O primeiro passo é aprender os alfabetos básicos da língua: o Hiragana
+        e o Katakana. Eles fazem parte da escrita japonesa.<br />
+        Eu sei, pode parecer complicado, mas não é um bicho de sete cabeças.
+      </p>
+      <p className={styles.fourthParagraph}>Pode também não parecer tão interessante no começo, mas quando você conseguir ler o nome do seu anime favorito ou o nome
+        daquela abertura garanto que será muito gratificante.</p>
+      <p>Vamos começar então?</p>
+      <div className={styles.buttons}>
+        <strong>Divirta-se iniciando seus estudos! 🧠</strong>
+        <div className={styles.buttonsGame}>
+          <a href="/alphabet/hiragana"><button>Hiragana</button></a>
+          <a href="/alphabet/katakana"><button>Katakana</button></a>
+        </div>
+      </div>
+    </main>
   )
 }
