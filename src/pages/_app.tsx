@@ -1,13 +1,14 @@
-import ThemeContainer from "../contexts/theme/ThemeContainer"
+import { ThemeContextProvider } from "../contexts/ThemeContext";
+import { ItemsGameProvider } from "../contexts/ItemsGameContext";
+import Header from "../components/Header";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { Box } from "@chakra-ui/layout"
-import Header from "../components/Header"
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCheckCircle, faCircle, faHome, faMoon, faSun,
   faInfo, faBars, faTimes, faChevronRight
 } from "@fortawesome/free-solid-svg-icons"
-import { ItemsGameProvider } from "../contexts/ItemsGameContext"
+
+import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }) {
   library.add(faHome, faSun, faMoon, faCheckCircle,
@@ -15,14 +16,14 @@ function MyApp({ Component, pageProps }) {
   )
 
   return (
-    <ThemeContainer>
-      <Box>
+    <ThemeContextProvider>
+      <>
         <Header />
         <ItemsGameProvider>
           <Component {...pageProps} />
         </ItemsGameProvider>
-      </Box>
-    </ThemeContainer>
+      </>
+    </ThemeContextProvider>
   )
 }
 
