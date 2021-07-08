@@ -1,15 +1,36 @@
+:root {
+  --darkTextColor: #F2F2F2;
+  --darkBackgroundColor: #282930;
+  --darkColorBorderBottom: #494D4B;
+  --darkBackgroundColorButtonPrimary: #6C63FF;
+  --darkBackgroundColorButtonSecundary: #383A41;
+  --darkBabkgroundColorHeader: #23242A;
+  --lightTextColorPrimary: #202124;
+  --lightTextColorSecundary: #6C6C6C;
+  --lightBackgroundColor: #f5f5f5;
+  --lightColorBorderBottom: #EBEBEB;
+  --lightBackgroundColorButtonPrimary: #6C63FF;
+  --lightBackgroundColorButtonSecundary: #DEDFE1;
+  --lightBabkgroundColorHeader: #f0f0f0;
+  --lightColorBorder: #BEBEBE;
+}
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: 'border-box'
-}
-
-body {
-  background: #F7F8FA;
+  box-sizing: border-box;
 }
 
 body, input, textarea, button {
   font: 500 1rem Inter, sans-serif;
+}
+
+a, button {
+  color: inherit;
+}
+
+strong {
+  display: block;
 }
 
 button {
@@ -19,7 +40,7 @@ button {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   font-family: Lexend, sans-serif;
-  color: #202124;
+  color: inherit;
 }
 
 h1 {
