@@ -1,7 +1,3 @@
-import { Box, Center, Divider, Heading, Link as LinkChakra, Text } from "@chakra-ui/layout"
-import { Button, Popover, PopoverTrigger, PopoverContent, PopoverHeader,
-  PopoverBody, PopoverFooter, PopoverArrow, useColorModeValue, PopoverCloseButton,
-  Stack } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Cookies from "js-cookie"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -13,6 +9,8 @@ import { useItemsGame } from "../../hooks/useItemsGame"
 
 import { api } from "../../services/api"
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
+
+import styles from './styles.module.scss';
 
 type DataAlphabet = {
   name: string;
@@ -47,57 +45,24 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         nameAlphabet: slug,
         itemsAlphabetInGame: []
       }))
-      
+
       resetItemsInGame()
     }
   }, [])
-
-  const colorModeObject = {
-    backgroundHome: useColorModeValue('', 'gray.600'),
-    backgroundButton: useColorModeValue('gray.300', 'gray.850'),
-    backgroundInfo: useColorModeValue('gray.50', ''),
-    textColorHome: useColorModeValue('gray.800', 'gray.100'),
-    textColorSecondary: useColorModeValue('', 'gray.200'),
-    colorCheckButton: useColorModeValue('white', 'green'),
-  }
 
   const HowDoYouWantToStudy = (
     <>
       {itemsInGameInformation.length >= 1 && (
         <>
-          <Text as='strong' fontSize='1.3rem' marginTop='1.2rem'>
-            Como deseja estudar?
-          </Text>
-          <Box as='div' display='flex' alignItems='center' justifyContent='center'
-            width='100%' marginTop='2.4rem'
-          >
+          <p>Selecione um jogo:</p>
+          <div className={styles.buttonsGame}>
             <Link href='/game/matching-elements'>
-              <Button size='lg' marginRight='2rem' 
-                colorScheme='whatsapp'
-              >
-                <LinkChakra
-                  _hover={{
-                    textDecoration: 'none'
-                  }}
-                >
-                  Relacionar elementos
-                </LinkChakra>
-              </Button>
+              <button>Relacionar elementos</button>
             </Link>
-            <Link href='/game/quiz'>
-              <Button size='lg'
-                colorScheme='whatsapp'
-              >
-                <LinkChakra
-                  _hover={{
-                    textDecoration: 'none'
-                  }}
-                >
-                  Quiz
-                </LinkChakra>
-              </Button>
+            <Link href='/game/Quiz'>
+              <button>Quiz</button>
             </Link>
-          </Box>
+          </div>
         </>
       )}
     </>
@@ -119,130 +84,70 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
   }
 
   return (
-    <Box as='main' minHeight='calc(100vh - 6rem)' display='flex'
-      flexDirection={{
-        base: 'column-reverse', lg: 'row'
-      }}
-      width='100%' background={colorModeObject.backgroundHome}
-      color={colorModeObject.textColorHome}
-    >
+    <main id={styles.mainContent}>
       <Head>
         <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
       </Head>
-      <Box as='header' display='flex' flexDirection='column' alignItems='center'
-        padding={{ base: '0 1rem', lg: '3rem 2rem' }}
-      >
-        <Box as='h3' textAlign={{ base: 'center', lg: 'left' }}
-          fontSize={{ base: '1.15rem', md: '1.5rem', lg: '2.3rem' }}
-          color={colorModeObject.textColorHome}
-        >
-          Escolha as famílias para estudar
-        </Box>
-        <Text fontSize={{
-            base: '0.8rem', lg: '1.1rem'
-          }} textAlign={{
-            base: 'center', lg: 'left'
-          }} marginTop={{
-            base: '0.6rem', lg: '0.4rem'
-          }} padding='0 2rem' color={colorModeObject.textColorSecondary}
-        >
-          (Cada coluna na tabela do {capitalizeFirstLetter(infoAlphabet.name)} é 
-          dita como uma família)
-        </Text>
-        <Box as='section' gridArea='buttonsFamilies' display='flex' flexWrap='wrap'
-          marginTop='2.3rem' width='100%'
-        >
+      <section className={styles.infoFamily}>
+        <div className={styles.info}>
+          <div className={styles.title}>
+            <h1>{infoAlphabet.name}</h1>
+            <p>ひらがな</p>
+          </div>
+          <div className={styles.textContainer}>
+            <h3>Mas o que é o Hiragana? 🤔</h3>
+            <p>Hiragana (平仮名) é um dos alfabetos
+              da língua japonesa. Utilizamos ele para
+              todas as palavras para as quais não há
+              kanji. Também é usado nas terminações
+              dos verbos e dos adjetivos (as famosas
+              partículas) importantíssimas para o
+              entendimento da língua.
+            </p>
+          </div>
+          <div className={styles.gameButtons}>
+            {HowDoYouWantToStudy}
+          </div>
+        </div>
+        <div className={styles.lineDivider}>
+          <hr />
+        </div>
+      </section>
+      <section className={styles.itemsGame}>
+        <div className={styles.textInfoGame}>
+          <h2>O que vamos estudar?</h2>
+          <p>Selecione quais famílias (colunas da tabela) você deseja estudar?</p>
+          <p>Geralmente a tabela é utilizada para memorização!</p>
+        </div>
+
+        <div className={styles.containerItems}>
           {dataAlphabet.map((family, indexFamily) => (
             <>
               {handleFamilySelected(family.name) ? (
-                <Button key={`${family.name}_${indexFamily}_s`} onClick={() => selectToggleItemGame(
-                  family.name, family.characters)}
-
-                  flex={{
-                    base: '1 0 60%',
-                    sm: '1 0 40%',
-                    md: '1 0 30%',
-                    lg: '1 0 20%'
-                  }} margin='0.4rem' size='md'
-                  colorScheme='whatsapp'
-                  leftIcon={<FontAwesomeIcon icon='check-circle' color={colorModeObject.colorCheckButton} />}
+                <button key={`${family.name}_${indexFamily}_s`}
+                  className={styles.itemSelected}
+                  onClick={() => selectToggleItemGame(family.name, family.characters)}
                 >
-                  {`${family.name}`}
-                </Button>
+                  <FontAwesomeIcon icon='check-circle' />
+                  <p>{family.name}</p>
+                </button>
               ) : (
-                <Button key={`${family.name}_${indexFamily}`} onClick={() => selectToggleItemGame(
-                  family.name, family.characters)}
-
-                  flex={{
-                    base: '1 0 60%',
-                    sm: '1 0 40%',
-                    md: '1 0 30%',
-                    lg: '1 0 20%'
-                  }} margin='0.4rem' size='md'
-                  leftIcon={<FontAwesomeIcon icon='circle' />}
-                  variant='outline'
+                <button key={`${family.name}_${indexFamily}_s`}
+                  className={styles.item}
+                  onClick={() => selectToggleItemGame(family.name, family.characters)}
                 >
-                  {`${family.name}`}
-                </Button>
+                  <FontAwesomeIcon icon='circle' />
+                  <p>{family.name}</p>
+                </button>
               )}
             </>
           ))}
-        </Box>
-        <Box display={{ base: 'flex', lg: 'none' }} alignItems='center' flexDirection='column'
-          paddingBottom='3rem' paddingTop='1rem'
-        >
-          {HowDoYouWantToStudy}
-        </Box>
-      </Box>
-      <Center display={{ base: 'none', lg: 'block' }} margin='2rem 0'>
-        <Divider orientation="vertical" />
-      </Center>
-      <Box as='div' gridArea='startGame' display='flex' alignItems='center' 
-        flexDirection='column' justifyContent='center'
-        padding='0 2rem' paddingTop={{
-          base: '1rem',
-          lg: '0'
-        }} 
-      >
-        <Stack direction='row' spacing={6} as='section' display='flex' 
-          alignItems='center' marginBottom={{
-            base: '1rem', lg: '0'
-          }} marginTop={{
-            base: '2rem', md: '2rem'
-          }}
-        >
-          <Text as='strong' fontSize={{
-              base: '2.1rem', lg: '2.5rem'
-            }} textTransform='capitalize'
-          >
-            {infoAlphabet.name}
-          </Text>
-          <Popover>
-            <PopoverTrigger>
-              <Button colorScheme='linkedin' size='xs'>
-                <FontAwesomeIcon icon='info'/>
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent width={{ base: '85vw', lg: '70vw' }}
-              padding='1rem' lineHeight={{ base: '1.4rem', lg: '1.8rem' }}
-              margin={{
-                base: '0 1rem', md: '0'
-              }}
-            >
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader fontWeight='600' letterSpacing='1px' textTransform='uppercase'>
-                {infoAlphabet.name}
-              </PopoverHeader>
-              <PopoverBody>{infoAlphabet.infoText}</PopoverBody>
-            </PopoverContent>
-          </Popover>
-        </Stack>
-        <Box display={{ base: 'none', lg: 'flex' }} alignItems='center' flexDirection='column'>
-          {HowDoYouWantToStudy}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+        <p className={styles.quantItemsSelected}>
+          {itemsInGameInformation.length} selecionados
+        </p>
+      </section>
+    </main>
   )
 }
 

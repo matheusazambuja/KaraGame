@@ -1,0 +1,159 @@
+#mainContent {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 
+    "infoFamily itemsGame"; 
+  
+  height: calc(100vh - 6rem);
+  padding-left: 6rem;
+  padding-right: 3rem;
+
+  .infoFamily {
+    grid-area: infoFamily;
+
+    display: flex;
+
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        h1 {
+          font-size: 2.5rem;
+          line-height: 50px;
+          letter-spacing: 4%;
+        }
+
+        p {
+          color: var(--lightTextColorSecundary);
+          font-family: Lexend, sans-serif;
+          font-size: 1.5rem;
+          line-height: 30px;
+          margin-top: 0.1rem;
+        }
+      }
+
+      .textContainer {
+        margin-top: 7.5rem;
+
+        h3 {
+          font-size: 1.8rem;
+          line-height: 34px;
+        }
+
+        p {
+          color: var(--lightTextColorSecundary);
+          font-size: 1.2rem;
+          line-height: 32px;
+
+          margin-top: 1.5rem;
+          padding-right: 13rem;
+        }
+      }
+
+      .gameButtons {
+        margin-top: 10rem;
+
+        p {
+          font-size: 1.2rem;
+          line-height: 22px;
+        }
+
+        .buttonsGame {
+          button {
+            border: 0;
+            background-color: var(--lightBackgroundColorButtonPrimary);
+            color: var(--darkTextColor);
+
+            font-weight: 600;
+            line-height: 22px;
+
+            border-radius: 8px;
+            height: 3rem;
+
+            padding: 0.8rem 1.4rem;
+            margin-top: 1.6rem;
+            margin-right: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .lineDivider {
+      background-color: var(--lightColorBorder);
+      margin-right: 4.6rem;
+    }
+  }
+
+  .itemsGame {
+    grid-area: itemsGame;
+
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+
+    .textInfoGame {
+      align-self: center;
+      text-align: center;
+
+      h2 {
+        font-size: 2.2rem;
+        line-height: 46px;
+
+        margin-bottom: 0.4rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 32px;
+      }
+    }
+
+    .containerItems {
+      margin-top: 3.5rem;
+
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 2.4rem;
+      column-gap: 3rem;
+
+      button {
+        border: 0;
+        background-color: var(--lightBackgroundColorButtonPrimary);
+        color: var(--darkTextColor);
+
+        font-weight: 600;
+        line-height: 22px;
+
+        border-radius: 8px;
+        height: 3rem;
+        width: 10rem;
+
+        padding: 0.8rem 1rem;
+
+        p {
+          display: inline-block;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    .quantItemsSelected {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      color: var(--lightTextColorSecundary);
+      font-family: Lexend, sans-serif;
+      font-size: 1.3rem;
+      line-height: 26px;
+
+      padding-top: 3rem;
+      padding-right: 2rem;
+    }
+  }
+}
