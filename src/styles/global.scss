@@ -1,5 +1,6 @@
 :root {
-  --darkTextColor: #F2F2F2;
+  --darkTextColorPrimary: #F2F2F2;
+  --darkTextColorSecundary: #BBBBBB;
   --darkBackgroundColor: #282930;
   --darkColorBorderBottom: #494D4B;
   --darkBackgroundColorButtonPrimary: #6C63FF;
@@ -21,6 +22,14 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
+#__next {
+  height: calc(100% - 6rem);
+}
+
 body, input, textarea, button {
   font: 500 1rem Inter, sans-serif;
 }
@@ -40,7 +49,6 @@ button {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   font-family: Lexend, sans-serif;
-  color: inherit;
 }
 
 h1 {
@@ -53,4 +61,53 @@ h2 {
 
 img {
   border-radius: 10%
+}
+
+@media (max-width: 2600px) {
+  html {
+    font-size: 143.75%; // 23px
+  }
+}
+
+@media (max-width: 1960px) {
+  html {
+    font-size: 106.25%; // 17px
+  }
+}
+
+@media (max-width: 1500px) {
+  html {
+    font-size: 81.25%; // 13px
+  }
+}
+
+@media(max-width: 768px) {
+  html {
+    font-size: 75%; // 12px
+  }
+}
+
+@media(max-width: 500px) {
+  html {
+    font-size: 68.75%; // 11px
+  }
+}
+
+@media(max-width: 400px) {
+  html {
+    font-size: 62.5%; // 10px
+  }
+}
+
+@media(max-width: 350px) {
+  html {
+    font-size: 56.25%; // 9px
+    stroke: 56.25%;
+  }
+}
+
+@media(max-width: 300px) {
+  html {
+    font-size: 50%; // 8x
+  }
 }
