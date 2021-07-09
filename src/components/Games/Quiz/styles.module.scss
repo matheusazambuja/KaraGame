@@ -1,0 +1,117 @@
+.mainContent {
+  height: 100%;
+  padding-bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  &.mainContentLight {
+    .buttonTranslated {
+      background-color: var(--lightBackgroundColorButtonPrimary);
+      color: var(--lightTextColorPrimary);
+    }
+
+    .progressBar {
+      background-color: var(--lightColorBorderBottom);
+
+      div {
+        background-color: var(--lightBackgroundColorButtonPrimary);
+      }
+    }
+  }
+
+  &.mainContentDark {
+    background-color: var(--darkBackgroundColor);
+    color: var(--darkTextColorPrimary);
+
+    .infoFamily {
+      .info {
+        .title {
+          p {
+            color: var(--darkTextColorSecundary);
+          }
+        }
+
+        .textContainer {
+          p {
+            // background-color: aqua;
+            color: var(--darkTextColorSecundary);
+          }
+        }
+      }
+    }
+
+    .buttonTranslated {
+      background-color: var(--lightBackgroundColorButtonPrimary);
+      color: var(--darkTextColorPrimary);
+    }
+
+    .progressBar {
+      background-color: var(--lightColorBorder);
+
+      div {
+        background-color: var(--darkBackgroundColorButtonPrimary);
+      }
+    }
+  }
+
+  .titleInfoQuiz {
+    font-size: 1.4rem;
+    letter-spacing: 0.03rem;
+
+    transition: all 0.2s;
+  }
+
+  .itemCurrentAsked {
+    font-size: 8rem;
+    padding-bottom: 2rem;
+
+    transition: all 0.2s;
+  }
+
+  .containerButtons {
+    align-self: center;
+
+    transition: all 0.2s;
+
+    .buttonTranslated {
+      border: 0;
+  
+      font-weight: 600;
+      line-height: 22px;
+      text-transform: uppercase;
+  
+      border-radius: 8px;
+      height: 3.5rem;
+      width: 6rem;
+  
+      padding: 0.8rem 1rem;
+      margin-right: 2.5rem;
+
+      transition: all 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+
+  .progressBar {
+    width: 80%;
+    height: 1rem;
+
+    border-radius: 13px;
+
+    transition: all 0.2s;
+
+    div {
+      width: 40%;
+      height: 100%;
+      border-radius: 13px;
+
+      transition: all 0.2s;
+    }
+  }
+}
