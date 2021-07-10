@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import Cookies from "js-cookie"
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 type Theme = 'light' | 'dark';
 
 type ThemeContextProps = {
-  children: ReactNode
+  children: ReactNode;
 };
 
 type ThemeContextType = {
@@ -15,24 +15,24 @@ type ThemeContextType = {
 export const ThemeContext = createContext({} as ThemeContextType);
 
 export function ThemeContextProvider({ children }: ThemeContextProps) {
-  const [currentTheme, setCurrentTheme] = useState<Theme>(() => {
-    const cookiesTheme = Cookies.getJSON('theme')
+  const [currentTheme, setCurrentTheme] = useState<Theme>('light');
 
-    return (cookiesTheme ?? 'light') as Theme;
-  });
+  useEffect(() => {
+    const cookiesTheme = Cookies.getJSON('theme');
+
+    setCurrentTheme(cookiesTheme);
+  }, []);
 
   useEffect(() => {
     Cookies.set('theme', currentTheme);
   }, [currentTheme]);
 
   const toggleTheme = () => {
-    setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
+    setCurrentTheme(oldState => oldState === 'light' ? 'dark' : 'light');
   };
 
   return (
-    <ThemeContext.Provider value={{
-      theme: currentTheme, toggleTheme
-    }}>
+    <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
