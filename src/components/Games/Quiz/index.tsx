@@ -1,8 +1,11 @@
 import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTheme } from "../../../hooks/useTheme";
+import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { Button } from "../../Button";
 
 import styles from './styles.module.scss';
 
@@ -159,7 +162,10 @@ export default function Quiz() {
     <main className={`${styles.mainContent}
       ${theme === 'light' ? styles.mainContentLight : styles.mainContentDark}`}
     >
-      <strong className={styles.titleInfoQuiz}>Selecione a opção correspondente ao elemento</strong>
+      <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
+      {!isFinishedGame &&
+        <strong className={styles.titleInfoQuiz}>Selecione a opção correspondente ao elemento</strong>
+      }
 
       {!isFinishedGame && (
         <>
@@ -179,23 +185,22 @@ export default function Quiz() {
 
       {isFinishedGame && (
         <>
-          <div>
-            <strong>Parabéns!!!</strong>
-          </div>
-          <div>
-            <button onClick={setDefaultStateGame}>Estudar novamente</button>
-            <button>
+          <strong className={styles.textCongratulation}>Parabéns!!!</strong>
+          <div className={styles.containerButtonsFinished}>
+            <Button onClick={setDefaultStateGame}>Estudar novamente</Button>
+            <Button>
               <Link href={`/alphabet/${nameAlphabet}`}>
                 Estudar outras famílias
               </Link>
-            </button>
+            </Button>
           </div>
         </>
       )}
 
       <div className={styles.progressBar}>
         <div style={{
-          width: `${Math.round(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}%`
+          width: `${Math.round(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}%`,
+          backgroundColor: `${isFinishedGame ? '#8257E5' : ''}`
         }}></div>
       </div>
     </main>
