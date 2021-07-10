@@ -1,6 +1,5 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { createContext, ReactNode, useCallback, useEffect, useState } from "react";
 import Cookies from 'js-cookie';
-import { createContext } from 'use-context-selector'
 
 
 type ItemInformation = {
@@ -50,7 +49,7 @@ export function ItemsGameProvider({ children }: ItemsGameProviderProps) {
     const dataCookiesInformation = Cookies.getJSON('KaraGameInformation')
 
     if (!familyExists) {
-      const itemsInformationUpdated = [ ...itemsInGameInformation, { name: nameItemSelected, characters }]
+      const itemsInformationUpdated = [...itemsInGameInformation, { name: nameItemSelected, characters }]
 
       Cookies.set('KaraGameInformation', JSON.stringify({
         ...dataCookiesInformation,
