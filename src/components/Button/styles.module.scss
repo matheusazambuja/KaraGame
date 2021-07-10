@@ -1,0 +1,39 @@
+.buttonCustom {
+  border: 0;
+
+  font-weight: 600;
+  line-height: 22px;
+
+  border-radius: 8px;
+  height: 3rem;
+  width: 10rem;
+
+  padding: 0 1.3rem;
+
+  transition: all 0.2s;
+
+  &.buttonLight {
+    background-color: var(--lightBackgroundColorPrimary);
+    color: var(--darkTextColorPrimary);
+
+    &.isSelected {
+      background-color: transparent;
+      border: 2px solid var(--darkBackgroundColorPrimary);
+      color: var(--lightTextColorPrimary);
+    }
+  }
+
+  &.buttonDark {
+    background-color: var(--darkBackgroundColorPrimary);
+    color: var(--darkTextColorPrimary);
+    
+    &.isSelected {
+      background-color: transparent;
+      border: 2px solid var(--darkBackgroundColorPrimary);
+    }
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
