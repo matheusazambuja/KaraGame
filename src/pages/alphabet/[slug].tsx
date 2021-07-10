@@ -1,21 +1,23 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Cookies from "js-cookie"
-import { GetStaticPaths, GetStaticProps } from "next"
-import Head from "next/head"
-import Link from "next/link"
-import { useRouter } from 'next/router'
-import { useEffect } from "react"
-import { useItemsGame } from "../../hooks/useItemsGame"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Cookies from 'js-cookie';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect } from 'react';
+import { Button } from '../../components/Button';
+import { useItemsGame } from '../../hooks/useItemsGame';
+import { useTheme } from '../../hooks/useTheme';
 
-import { api } from "../../services/api"
-import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
+import { api } from '../../services/api';
+import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter';
 
 import styles from './styles.module.scss';
 
 type DataAlphabet = {
   name: string;
   characters: any;
-}
+};
 
 type AlphabetProps = {
   infoAlphabet: {
@@ -23,10 +25,14 @@ type AlphabetProps = {
     infoText: string
   },
   dataAlphabet: DataAlphabet[];
-}
+};
 
 
 export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) {
+
+  const {
+    theme
+  } = useTheme();
 
   const {
     itemsInGameInformation,
@@ -34,39 +40,39 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
     resetItemsInGame
   } = useItemsGame();
 
-  const router = useRouter()
-  const { slug } = router.query
+  const router = useRouter();
+  const { slug } = router.query;
 
   useEffect(() => {
-    const dataCookiesInformation = Cookies.getJSON('KaraGameInformation')
+    const dataCookiesInformation = Cookies.getJSON('KaraGameInformation');
 
     if (dataCookiesInformation.nameAlphabet !== slug) {
       Cookies.set('KaraGameInformation', JSON.stringify({
         nameAlphabet: slug,
         itemsAlphabetInGame: []
-      }))
+      }));
 
-      resetItemsInGame()
+      resetItemsInGame();
     }
-  }, [])
+  }, []);
 
   const HowDoYouWantToStudy = (
     <>
       {itemsInGameInformation.length >= 1 && (
-        <>
+        <div key={`div-select-game`} className={styles.gameButtons}>
           <p>Selecione um jogo:</p>
           <div className={styles.buttonsGame}>
             <Link href='/game/matching-elements'>
-              <button>Relacionar elementos</button>
+              <a><Button>Relacionar elementos</Button></a>
             </Link>
-            <Link href='/game/Quiz'>
-              <button>Quiz</button>
+            <Link href='/game/quiz'>
+              <a><Button>Quiz</Button></a>
             </Link>
           </div>
-        </>
+        </div>
       )}
     </>
-  )
+  );
 
   function handleFamilySelected(nameFamily: string) {
 
@@ -74,24 +80,26 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
 
     const indexItemInGame = itemsInGameInformation.findIndex(
       item => item.name === nameFamily
-    )
+    );
 
     if (indexItemInGame === -1) {
-      return false
+      return false;
     }
 
-    return true
+    return true;
   }
 
   return (
-    <main id={styles.mainContent}>
+    <main className={`${styles.mainContent}
+      ${theme === 'light' ? styles.mainContentLight : styles.mainContentDark}
+    `}>
       <Head>
         <title>{capitalizeFirstLetter(infoAlphabet.name)} - KaraGame</title>
       </Head>
       <section className={styles.infoFamily}>
         <div className={styles.info}>
           <div className={styles.title}>
-            <h1>{infoAlphabet.name}</h1>
+            <h1>{capitalizeFirstLetter(infoAlphabet.name)}</h1>
             <p>ひらがな</p>
           </div>
           <div className={styles.textContainer}>
@@ -105,13 +113,9 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
               entendimento da língua.
             </p>
           </div>
-          <div className={styles.gameButtons}>
-            {HowDoYouWantToStudy}
-          </div>
+          {HowDoYouWantToStudy}
         </div>
-        <div className={styles.lineDivider}>
-          <hr />
-        </div>
+        <hr className={styles.lineDivider} />
       </section>
       <section className={styles.itemsGame}>
         <div className={styles.textInfoGame}>
@@ -122,25 +126,24 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
 
         <div className={styles.containerItems}>
           {dataAlphabet.map((family, indexFamily) => (
-            <>
+            <Fragment key={indexFamily}>
               {handleFamilySelected(family.name) ? (
-                <button key={`${family.name}_${indexFamily}_s`}
-                  className={styles.itemSelected}
+                <Button key={`${family.name}_selected`}
                   onClick={() => selectToggleItemGame(family.name, family.characters)}
+                  isSelected
                 >
                   <FontAwesomeIcon icon='check-circle' />
                   <p>{family.name}</p>
-                </button>
+                </Button>
               ) : (
-                <button key={`${family.name}_${indexFamily}_s`}
-                  className={styles.item}
+                <Button key={`${family.name}`}
                   onClick={() => selectToggleItemGame(family.name, family.characters)}
                 >
                   <FontAwesomeIcon icon='circle' />
                   <p>{family.name}</p>
-                </button>
+                </Button>
               )}
-            </>
+            </Fragment>
           ))}
         </div>
         <p className={styles.quantItemsSelected}>
@@ -148,39 +151,39 @@ export default function Alphabet({ dataAlphabet, infoAlphabet }: AlphabetProps) 
         </p>
       </section>
     </main>
-  )
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await api.get(`/alphabets/`)
+  const { data } = await api.get(`/alphabets/`);
 
   const paths = data.map(alphabet => {
     return {
       params: {
         slug: alphabet.id
       }
-    }
-  })
+    };
+  });
 
   return {
     paths,
     fallback: 'blocking'
-  }
+  };
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { slug } = ctx.params
+  const { slug } = ctx.params;
 
-  const { data } = await api.get(`/alphabets/${slug}`)
+  const { data } = await api.get(`/alphabets/${slug}`);
 
-  const elementsAlphabetArray = Object.entries(data.alphabet)
+  const elementsAlphabetArray = Object.entries(data.alphabet);
 
   const dataAlphabet: DataAlphabet[] = elementsAlphabetArray.map(alphabet => {
     return {
       name: alphabet[0],
       characters: alphabet[1]
-    }
-  })
+    };
+  });
 
   return {
     props: {
@@ -191,5 +194,5 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       dataAlphabet
     },
     revalidate: 60 * 60 * 24 // 24 hours
-  }
+  };
 }

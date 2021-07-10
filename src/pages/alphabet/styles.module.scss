@@ -1,13 +1,80 @@
-#mainContent {
+.mainContent {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   grid-template-rows: 1fr;
   grid-template-areas: 
     "infoFamily itemsGame"; 
   
-  height: calc(100vh - 6rem);
+  min-height: calc(100vh - 6rem);
   padding-left: 6rem;
   padding-right: 3rem;
+
+  transition: all 0.2s;
+
+  &.mainContentLight {
+    .info {
+      .title p {
+        color: var(--lightTextColorSecundary);
+      }
+
+      .textContainer p {
+        color: var(--lightTextColorSecundary);
+      }
+
+      .gameButtons {
+        .buttonsGame button {
+          background-color: var(--lightBackgroundColorPrimary);
+          color: var(--darkTextColorPrimary);
+        }
+      }
+    }
+
+    .lineDivider {
+      background-color: var(--lightColorBorder);
+    }
+  }
+
+  &.mainContentDark {
+    background-color: var(--darkBackgroundColor);
+    color: var(--darkTextColorPrimary);
+
+    .infoFamily {
+      .info {
+        .title {
+          p {
+            color: var(--darkTextColorSecundary);
+          }
+        }
+  
+        .textContainer {
+          p {
+            color: var(--darkTextColorSecundary);
+          }
+        }
+      }
+  
+      .lineDivider {
+        background-color: var(--darkColorBorderBottom);
+      }
+    }
+
+    .itemsGame {
+      .textInfoGame {
+        p {
+          color: var(--darkTextColorSecundary);
+        }
+      }
+
+      .containerItems {
+        button {
+        }
+      }
+
+      .quantItemsSelected {
+        color: var(--darkTextColorSecundary);
+      }
+    }
+  }
 
   .infoFamily {
     grid-area: infoFamily;
@@ -21,6 +88,8 @@
       display: flex;
       flex-direction: column;
 
+      transition: all 0.2s;
+
       .title {
         h1 {
           font-size: 2.5rem;
@@ -29,7 +98,6 @@
         }
 
         p {
-          color: var(--lightTextColorSecundary);
           font-family: Lexend, sans-serif;
           font-size: 1.5rem;
           line-height: 30px;
@@ -46,12 +114,11 @@
         }
 
         p {
-          color: var(--lightTextColorSecundary);
           font-size: 1.2rem;
           line-height: 32px;
 
           margin-top: 1.5rem;
-          padding-right: 13rem;
+          padding-right: 7rem;
         }
       }
 
@@ -65,17 +132,7 @@
 
         .buttonsGame {
           button {
-            border: 0;
-            background-color: var(--lightBackgroundColorButtonPrimary);
-            color: var(--darkTextColor);
-
-            font-weight: 600;
-            line-height: 22px;
-
-            border-radius: 8px;
-            height: 3rem;
-
-            padding: 0.8rem 1.4rem;
+            width: fit-content;
             margin-top: 1.6rem;
             margin-right: 0.8rem;
           }
@@ -84,8 +141,13 @@
     }
 
     .lineDivider {
-      background-color: var(--lightColorBorder);
-      margin-right: 4.6rem;
+      border: 0;
+      border-radius: 8px;
+      height: 100%;
+      padding: 0 1px;
+      margin-right: 6rem;
+      
+      transition: all 0.2s;
     }
   }
 
@@ -95,6 +157,8 @@
     padding-top: 5rem;
     display: flex;
     flex-direction: column;
+
+    transition: all 0.2s;
 
     .textInfoGame {
       align-self: center;
@@ -114,26 +178,18 @@
     }
 
     .containerItems {
-      margin-top: 3.5rem;
+      margin-top: 3rem;
 
       display: flex;
       flex-wrap: wrap;
-      row-gap: 2.4rem;
-      column-gap: 3rem;
+      justify-content: center;
+      row-gap: 2rem;
+      column-gap: 1.5rem;
+
+      transition: all 0.2s;
 
       button {
-        border: 0;
-        background-color: var(--lightBackgroundColorButtonPrimary);
-        color: var(--darkTextColor);
-
-        font-weight: 600;
-        line-height: 22px;
-
-        border-radius: 8px;
-        height: 3rem;
-        width: 10rem;
-
-        padding: 0.8rem 1rem;
+        width: 10.3rem;
 
         p {
           display: inline-block;
