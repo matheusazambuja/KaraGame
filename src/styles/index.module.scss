@@ -1,157 +1,129 @@
 #mainContent {
-  min-height: calc(100vh - 6rem);
+  max-width: 1220px;
 
-  font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
-  line-height: 36px;
+  margin: 0 auto;
 
-  &.mainDark {
-    background-color: var(--darkBackgroundColor);
-    color: var(--darkTextColorPrimary);
-    
-    .buttonsGame {
-      button {
-        background-color: var(--darkBackgroundColorPrimary);
-      }
-    }
+  padding-left: 54px;
+  padding-top: 104px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  h1 {
+    color: var(--black3);
+    padding-bottom: 4px;
   }
 
-  &.mainLight {
-    background-color: var(--lightBabkgroundColorHome);
-    color: var(--lightTextColorPrimary);
-
-    .buttonsGame {
-      button {
-        background-color: var(--lightBackgroundColorPrimary);
-      }
-    }
+  h2 {
+    color: var(--black1);
+    padding-bottom: 24px;
   }
 
-  .firstSection {
-    display: flex;
-
-    .textContainer {
-      width: 100%;
-
-      h1 {
-        font-size: 4.6rem;
-        font-weight: 400;
-        line-height: 90px;
-        margin-bottom: 2rem;
-      }
-    
-      strong {
-        margin-top: 1.1rem;
-      }
-    
-      p {
-        margin-top: 1.5rem;
-      }
-    }
-
-    .imgContainer {
-      height: fit-content;
-      margin-top: 3rem;
-    }
-    
+  h4 {
+    color: var(--gray3);
+    padding-bottom: 12px;
   }
 
-  .fourthParagraph {
-    margin-top: 1.5rem;
-    width: 90%;
+  .secondParagraph {
+    width: 520px;
+  }
+
+  .imgContainer {
+    position: absolute;
+    top: 200px;
+    left: 1065px;
   }
 
   .buttons {
     width: fit-content;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
 
+    margin-top: 160px;
+
+    h2 {
+      color: var(--black2)
+    }
+
     padding-top: 3rem;
 
     .buttonsGame {
-      // align-self: center;
+      display: flex;
+
       margin-top: 1.9rem;
   
       button {
-        border: 0;
-        border-radius: 8px;
-        color: #FEFEFE;
-        font-size: 1.2rem;
-        font-weight: 600;
-  
-        padding: 0.8rem 2rem;
-        margin-right: 0.9rem;
-  
-        &:hover {
-          filter: brightness(0.9);
-        }
+        margin-right: 96px;
       }
     }
   }
 }
 
-@media (min-width: 0px) {
-  #mainContent {
-    text-align: center;
-    padding: 0 5rem;
+// @media (min-width: 0px) {
+//   #mainContent {
+//     text-align: center;
+//     padding: 0 5rem;
     
-    .firstSection {
-      justify-content: center;
-      padding-top: 5rem;
+//     .firstSection {
+//       justify-content: center;
+//       padding-top: 5rem;
 
-      h1 {
-        text-align: left;
-      }
+//       h1 {
+//         text-align: left;
+//       }
 
-      .imgContainer {
-        display: none;
-      }
-    }
+//       .imgContainer {
+//         display: none;
+//       }
+//     }
 
-    .fourthParagraph {
-      width: 100%;
-    }
+//     .fourthParagraph {
+//       width: 100%;
+//     }
 
-    .buttons {
-      width: 100%;
-      justify-content: center;
-      text-align: center;
-    }
-  }
-}
+//     .buttons {
+//       width: 100%;
+//       justify-content: center;
+//       text-align: center;
+//     }
+//   }
+// }
 
-@media (min-width: 500px) {
-  #mainContent {
-    text-align: left;
-  }
-}
+// @media (min-width: 500px) {
+//   #mainContent {
+//     text-align: left;
+//   }
+// }
 
-@media (min-width: 800px) {
-  #mainContent {
-    text-align: left;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
-    padding-left: 9rem;
+// @media (min-width: 800px) {
+//   #mainContent {
+//     text-align: left;
+//     padding-top: 5rem;
+//     padding-bottom: 2rem;
+//     padding-left: 9rem;
 
-    h1 {
-      text-align: left;
-    }
+//     h1 {
+//       text-align: left;
+//     }
 
-    .firstSection {
-      justify-content: flex-start;
-      padding-top: 0;
+//     .firstSection {
+//       justify-content: flex-start;
+//       padding-top: 0;
 
-      .imgContainer {
-        display: block;
-        width: 1000px;
-      }
-    }
+//       .imgContainer {
+//         display: block;
+//         width: 1000px;
+//       }
+//     }
 
-    .buttons {
-      width: 100%;
-      justify-content: flex-start;
-      text-align: left;
-    }
-  }
-}
+//     .buttons {
+//       width: 100%;
+//       justify-content: flex-start;
+//       text-align: left;
+//     }
+//   }
+// }

@@ -3,7 +3,7 @@
 }
 
 .hero {
-  height: 100vh;
+  height: calc(100vh - 6rem);
 }
 
 .bgHero {
@@ -11,10 +11,10 @@
   top: 0;
   left: 0;
 
-  z-index: 1;
+  z-index: -1;
 
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 6rem);
 
   overflow: hidden;
 
@@ -23,6 +23,6 @@
   align-items: center;
 
   .svgHero {
-    box-shadow: inset 0 0 200px $black-3;
+    box-shadow: inset 0 0 200px --black-3;
   }
 }
