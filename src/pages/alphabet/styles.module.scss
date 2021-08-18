@@ -1,88 +1,29 @@
 .mainContent {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 0.9fr 1.1fr;
   grid-template-rows: 1fr;
   grid-template-areas: 
     "infoFamily itemsGame"; 
   
-  min-height: calc(100vh - 6rem);
-  padding-left: 6rem;
-  padding-right: 3rem;
+  max-width: 1220px;
+  height: 100vh;
+
+  margin: 0 auto;
+
+  padding-left: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
   transition: all 0.2s;
-
-  &.mainContentLight {
-    .info {
-      .title p {
-        color: var(--lightTextColorSecundary);
-      }
-
-      .textContainer p {
-        color: var(--lightTextColorSecundary);
-      }
-
-      .gameButtons {
-        .buttonsGame button {
-          background-color: var(--lightBackgroundColorPrimary);
-          color: var(--darkTextColorPrimary);
-        }
-      }
-    }
-
-    .lineDivider {
-      background-color: var(--lightColorBorder);
-    }
-  }
-
-  &.mainContentDark {
-    background-color: var(--darkBackgroundColor);
-    color: var(--darkTextColorPrimary);
-
-    .infoFamily {
-      .info {
-        .title {
-          p {
-            color: var(--darkTextColorSecundary);
-          }
-        }
-  
-        .textContainer {
-          p {
-            color: var(--darkTextColorSecundary);
-          }
-        }
-      }
-  
-      .lineDivider {
-        background-color: var(--darkColorBorderBottom);
-      }
-    }
-
-    .itemsGame {
-      .textInfoGame {
-        p {
-          color: var(--darkTextColorSecundary);
-        }
-      }
-
-      .containerItems {
-        button {
-        }
-      }
-
-      .quantItemsSelected {
-        color: var(--darkTextColorSecundary);
-      }
-    }
-  }
 
   .infoFamily {
     grid-area: infoFamily;
 
-    display: flex;
+    margin-top: 92px;
 
-    padding-top: 4rem;
-    padding-bottom: 5rem;
+    display: flex;
 
     .info {
       display: flex;
@@ -92,60 +33,55 @@
 
       .title {
         h1 {
-          font-size: 2.5rem;
-          line-height: 50px;
-          letter-spacing: 4%;
+          color: var(--black3);
+          margin-bottom: 6px;
         }
 
-        p {
-          font-family: Lexend, sans-serif;
-          font-size: 1.5rem;
-          line-height: 30px;
-          margin-top: 0.1rem;
+        h4 {
+          color: var(--gray2);
         }
       }
 
       .textContainer {
-        margin-top: 7.5rem;
+        margin-top: 108px;
 
         h3 {
-          font-size: 1.8rem;
-          line-height: 34px;
+          color: var(--black3);
+          margin-bottom: 24px;
         }
 
         p {
-          font-size: 1.2rem;
-          line-height: 32px;
-
-          margin-top: 1.5rem;
-          padding-right: 7rem;
+          color: var(--gray3);
+          width: 391px;
         }
       }
 
       .gameButtons {
-        margin-top: 10rem;
+        margin-top: 198px;
 
-        p {
-          font-size: 1.2rem;
-          line-height: 22px;
+        h4 {
+          margin-bottom: 16px;
         }
 
         .buttonsGame {
+          display: flex;
+
           button {
             width: fit-content;
-            margin-top: 1.6rem;
-            margin-right: 0.8rem;
+            margin-right: 16px;
+
+            padding: 0 32px;
           }
         }
       }
     }
 
     .lineDivider {
-      border: 0;
+      border: 1px solid var(--gray2);
       border-radius: 8px;
-      height: 100%;
-      padding: 0 1px;
-      margin-right: 6rem;
+      height: 95vh;
+      padding: 32px 0;
+      margin-left: 78px;
       
       transition: all 0.2s;
     }
@@ -154,7 +90,9 @@
   .itemsGame {
     grid-area: itemsGame;
 
-    padding-top: 5rem;
+    padding-top: 142px;
+    padding-left: 36px;
+    
     display: flex;
     flex-direction: column;
 
@@ -165,35 +103,73 @@
       text-align: center;
 
       h2 {
-        font-size: 2.2rem;
-        line-height: 46px;
-
-        margin-bottom: 0.4rem;
+        color: var(--black3);
+        margin-bottom: 8px;
       }
 
       p {
-        font-size: 1.2rem;
-        line-height: 32px;
+        color: var(--gray2);
       }
     }
 
     .containerItems {
-      margin-top: 3rem;
+      margin-top: 40px;
 
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      row-gap: 2rem;
-      column-gap: 1.5rem;
+      row-gap: 32px;
+      column-gap: 42px;
 
       transition: all 0.2s;
 
       button {
-        width: 10.3rem;
+        width: 134px;
+        height: 54px;
 
-        p {
-          display: inline-block;
-          margin-left: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border: 0.4px solid var(--black3);
+        border-radius: 8px;
+        box-shadow: 0px 8px 36px -10px rgba(0, 0, 0, 0.25);
+
+        background-color: var(--white1);
+
+        p:first-child {
+          color: var(--black3);
+          font-family: 'Rubik', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: -2%;
+          margin-top: 2px;
+        }
+
+        p:last-child {
+          color: var(--gray3);
+          font-family: 'Inter', sans-serif;
+          font-size: 8px;
+          font-weight: 500;
+        }
+
+        &.itemSelected {
+          flex-direction: row;
+          justify-content: center;
+  
+          color: var(--blue1);
+  
+          p {
+            color: var(--blue1);
+            font-family: 'Rubik', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: -2%;
+
+            margin-left: 4px;
+            margin-top: 4px;
+          }
         }
       }
     }
@@ -203,13 +179,10 @@
       display: flex;
       justify-content: flex-end;
 
-      color: var(--lightTextColorSecundary);
-      font-family: Lexend, sans-serif;
-      font-size: 1.3rem;
-      line-height: 26px;
+      color: var(--gray2);
 
-      padding-top: 3rem;
-      padding-right: 2rem;
+      padding-top: 68px;
+      padding-right: 32px;
     }
   }
 }
