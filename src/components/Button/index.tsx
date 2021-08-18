@@ -4,20 +4,14 @@ import { useTheme } from '../../hooks/useTheme';
 import styles from './styles.module.scss';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  isOutlined?: boolean;
   isSelected?: boolean
 };
 
-export function Button({ isOutlined = false, isSelected = false, ...props }: ButtonProps) {
-  const {
-    theme
-  } = useTheme();
+export function Button({ isSelected = false, ...props }: ButtonProps) {
 
   return (
     <button
-      className={`${isOutlined ? styles.isOutlined : styles.buttonCustom} ${isSelected ? styles.isSelected : styles.buttonCustom} 
-        ${theme === 'light' ? styles.buttonLight : styles.buttonDark}
-      `}
+      className={`${isSelected ? styles.isSelected : styles.buttonCustom}`}
       {...props}
     />
   )

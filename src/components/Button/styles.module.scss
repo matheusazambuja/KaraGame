@@ -1,39 +1,30 @@
 .buttonCustom {
   border: 0;
 
-  font-weight: 600;
-  line-height: 22px;
+  background-color: var(--blue1);
+  color: var(--white1);
+
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 120%;
 
   border-radius: 8px;
-  height: 3rem;
-  width: 10rem;
+  height: 69px;
+  width: 208px;
 
-  padding: 0 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   transition: all 0.2s;
 
-  &.buttonLight {
-    background-color: var(--lightBackgroundColorPrimary);
-    color: var(--darkTextColorPrimary);
-
-    &.isSelected {
-      background-color: transparent;
-      border: 2px solid var(--darkBackgroundColorPrimary);
-      color: var(--lightTextColorPrimary);
-    }
-  }
-
-  &.buttonDark {
-    background-color: var(--darkBackgroundColorPrimary);
-    color: var(--darkTextColorPrimary);
-    
-    &.isSelected {
-      background-color: transparent;
-      border: 2px solid var(--darkBackgroundColorPrimary);
-    }
+  &.isSelected {
+    background-color: var(--white3);
+    border: 2px solid var(--gray2);
+    color: var(--blue1);
   }
 
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.85);
   }
 }
