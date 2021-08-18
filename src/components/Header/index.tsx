@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from '../../hooks/useTheme';
 
@@ -10,25 +11,41 @@ export default function Header() {
   } = useTheme();
 
   return (
-    <header className={`${styles.header}
-      ${theme === 'light' ? styles.headerLight : styles.headerDark}
-    `}>
+    <header className={styles.header}>
       <div>
         <Link href='/'>
-          <a>
-            <FontAwesomeIcon icon='home' />
+          <a className={styles.iconHome}>
+            <Image src={'/home.svg'} alt={'Ícone página inicial'}
+              width={32} height={32}
+            />
           </a>
         </Link>
-        <div>
-          NAV
-        </div>
+        <nav>
+          <ul>
+            {NAV_ITEMS.map(item => (
+              <li>
+                <Link href={item.href}>
+                  <a>
+                    {item.label}
+                    <ul>
+                      {item.children.map(subItem => (
+                        <li>
+                          <Link href={subItem.href}>
+                            <a>
+                              <h4>{subItem.label}</h4>
+                              <p>{subItem.subLabel}</p>
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-      <button onClick={toggleTheme}>
-        {theme === 'light' ?
-          <FontAwesomeIcon icon='moon' /> :
-          <FontAwesomeIcon icon='sun' />
-        }
-      </button>
     </header>
   );
 };
@@ -42,16 +59,24 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Famílias',
-    href: '#',
+    label: 'Alfabetos',
+    href: '/#',
     children: [{
       label: 'Hiragana',
       subLabel: "Hiragana's families",
       href: '/alphabet/hiragana',
     }, {
       label: 'Katakana',
-      subLabel: "Hiragana's families",
+      subLabel: "Katakana's families",
       href: '/alphabet/katakana',
     }]
+  }, {
+    label: 'Partículas',
+    href: '/particulas',
+    children: []
+  }, {
+    label: 'Kanjis',
+    href: '/kanjis',
+    children: []
   }
 ]

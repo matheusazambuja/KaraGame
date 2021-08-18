@@ -3,47 +3,78 @@
   align-items: center;
   justify-content: space-between;
 
-  height: 6rem;
+  padding: 32px 0;
+  padding-left: 54px;
 
-  padding: 2rem 4rem;
+  background-color: var(--white1);
 
   transition: all 0.2s;
 
-  &.headerDark {
-    background-color: var(--darkBabkgroundColorHeader);
-    color: var(--darkTextColorPrimary);
-    border-bottom-color: var(--darkColorBorderBottom);
-
-    filter: drop-shadow(0px 1px 2px rgba(240, 240, 240, 0.25));
-
-    button {
-      background-color: var(--darkBackgroundColorSecundary);
-    }
-  }
-
-  &.headerLight {
-    background-color: var(--lightBackgroundColor);
-    color: var(--lightTextColorPrimary);
-    border-bottom-color: var(--lightColorBorderBottom);
-
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.25));
-
-    button {
-      background-color: var(--lightBackgroundColorSecundary);
-    }
-  }
-
   > div {
     display: flex;
-    
-    a {
-      font-size: 1.8rem;
-      padding: 2rem 4rem;
+
+    .iconHome {
+      margin-right: 64px;
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      li {
+        position: relative;
+
+        display: inline-block;
+        margin-right: 48px;
+
+        &:hover {
+          ul {
+            z-index: 1;
+            position: absolute;
+
+            background-color: var(--white3);
+            border: 0.4px solid var(--gray2);
+            border-radius: 8px;
+
+            display: block;
+
+            li {
+              width: 250px;
+
+              padding: 16px;
+
+              transition: .2s ease;
+
+              p {
+                color: var(--gray2);
+              }
+
+              &:hover {
+                transform: translate(3%);
+
+                h4 {
+                  color: var(--blue1);
+                }
+              }
+            }
+          }
+        }
+  
+        ul {
+          display: none;
+        }
+      }
     }
 
-    div {
-      display: flex;
-      align-items: center;
+    a {
+      color: var(--black2);
     }
   }
 
