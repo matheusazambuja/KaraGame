@@ -159,33 +159,37 @@ export default function Quiz() {
   }
 
   return (
-    <main className={`${styles.mainContent}
-      ${theme === 'light' ? styles.mainContentLight : styles.mainContentDark}`}
-    >
+    <main className={styles.mainContent}>
       <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
       {!isFinishedGame &&
-        <strong className={styles.titleInfoQuiz}>Selecione a opção correspondente ao elemento</strong>
+        <h2 className={styles.titleInfoQuiz}>Selecione a opção correspondente ao elemento</h2>
       }
 
       {!isFinishedGame && (
         <>
-          <strong className={styles.itemCurrentAsked}>{itemCurrentAsked && itemCurrentAsked.character}</strong>
+          <p className={styles.itemCurrentAsked}>{itemCurrentAsked && itemCurrentAsked.character}</p>
           <div className={styles.containerButtons}>
             {possiblesTranslate.map(translate => (
-              <button key={`button_${translate}`}
+              <Button key={`button_${translate}`}
                 onClick={() => setTranslateSelected(translate)}
-                className={styles.buttonTranslated}
               >
                 {translate}
-              </button>
+              </Button>
             ))}
+          </div>
+
+          <div className={styles.progressBar}>
+            <div style={{
+              width: `${Math.round(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}%`
+            }}></div>
           </div>
         </>
       )}
 
       {isFinishedGame && (
-        <>
-          <strong className={styles.textCongratulation}>Parabéns!!!</strong>
+        <section className={styles.finishedGame}>
+          <h1>Parabéns!!!</h1>
+          <h2>Você terminou o teste</h2>
           <div className={styles.containerButtonsFinished}>
             <Button onClick={setDefaultStateGame}>Estudar novamente</Button>
             <Button>
@@ -194,15 +198,8 @@ export default function Quiz() {
               </Link>
             </Button>
           </div>
-        </>
+        </section>
       )}
-
-      <div className={styles.progressBar}>
-        <div style={{
-          width: `${Math.round(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}%`,
-          backgroundColor: `${isFinishedGame ? '#8257E5' : ''}`
-        }}></div>
-      </div>
     </main>
   );
 }
