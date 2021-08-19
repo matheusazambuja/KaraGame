@@ -2,10 +2,6 @@
   position: relative;
 }
 
-.hero {
-  height: calc(100vh - 6rem);
-}
-
 .bgHero {
   position: absolute;
   top: 0;
@@ -13,8 +9,8 @@
 
   z-index: -1;
 
-  width: 100%;
-  height: calc(100vh - 6rem);
+  width: 100vw;
+  height: calc(100vh - 96px);
 
   overflow: hidden;
 
