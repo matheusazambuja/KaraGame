@@ -90,7 +90,7 @@
   .itemsGame {
     grid-area: itemsGame;
 
-    padding-top: 142px;
+    padding-top: 92px;
     padding-left: 36px;
     
     display: flex;
@@ -126,6 +126,8 @@
       button {
         width: 134px;
         height: 54px;
+
+        padding: 14px 20px;
 
         display: flex;
         flex-direction: column;

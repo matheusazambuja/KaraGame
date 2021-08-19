@@ -5,6 +5,7 @@
 
   padding-left: 54px;
   padding-top: 104px;
+  padding-bottom: 64px;
 
   display: flex;
   flex-direction: column;
@@ -43,21 +44,204 @@
     flex-direction: column;
     justify-content: center;
 
-    margin-top: 160px;
+    margin-top: 80px;
 
     h2 {
       color: var(--black2)
     }
 
-    padding-top: 3rem;
-
     .buttonsGame {
       display: flex;
 
-      margin-top: 1.9rem;
-  
-      button {
+      margin-top: 32px;
+
+      .buttonAlphabets, .buttonParticulas, .buttonKanjis {
         margin-right: 96px;
+
+        p, button {
+          display: none;
+        }
+      }
+
+      .buttonAlphabets {
+        border: 0;
+        cursor: default;
+      
+        background-color: var(--blue1);
+        color: var(--white1);
+        
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 120%;
+        
+        padding: 16px 32px;
+        margin-right: 96px;
+
+        border-radius: 8px;
+        height: 69px;
+        width: 208px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 0.2s;
+
+        &:hover {
+          width: 229px;
+          height: 234px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          border: 1px solid var(--gray2);
+          border-radius: 8px;
+
+          background-color: var(--white3);
+          box-shadow: 0px 8px 36px -10px rgba(0, 0, 0, 0.25);
+          color: var(--blue2);
+
+          p, button {
+            display: block;
+
+            color: var(--gray3);
+            font-size: 16px;
+
+            margin-bottom: 16px;
+            margin-top: 12px;
+          }
+
+          .buttonsAlphabets {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            column-gap: 16px;
+
+            button {
+              border: 0;
+              height: 31px;
+              width: 81px;
+
+              padding: 7px 10px;
+
+              border-radius: 6px;
+        
+              background-color: var(--blue1);
+              color: var(--white1);
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .buttonParticulas {
+        border: 0;
+      
+        background-color: var(--blue1);
+        color: var(--white1);
+        
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 120%;
+        
+        padding: 16px 32px;
+        margin-right: 96px;
+
+        border-radius: 8px;
+        height: 69px;
+        width: 208px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 0.2s;
+
+        &:hover {
+          border: 1px solid var(--gray2);
+          border-radius: 8px;
+
+          width: 229px;
+          height: 156px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          padding: 0 32px;
+          padding-top: 16px;
+
+          color: var(--blue1);
+          background-color: var(--white3);
+
+          p {
+            display: block;
+
+            color: var(--gray3);
+            font-size: 16px;
+
+            margin-bottom: 16px;
+            margin-top: 12px;
+          }
+        }
+      }
+
+      .buttonKanjis {
+        border: 0;
+      
+        background-color: var(--blue1);
+        color: var(--white1);
+        
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 120%;
+        
+        padding: 16px 32px;
+        margin-right: 96px;
+
+        border-radius: 8px;
+        height: 69px;
+        width: 208px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 0.2s;
+
+        &:hover {
+          border: 1px solid var(--gray2);
+          border-radius: 8px;
+
+          width: 229px;
+          height: 200px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          padding: 0 32px;
+          padding-top: 16px;
+
+          color: var(--blue1);
+          background-color: var(--white3);
+
+          p {
+            display: block;
+
+            color: var(--gray3);
+            font-size: 16px;
+
+            margin-bottom: 16px;
+            margin-top: 12px;
+          }
+        }
       }
     }
   }
