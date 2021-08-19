@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import { useTheme } from '../hooks/useTheme';
 import { Button } from '../components/Button';
 
 import styles from '../styles/index.module.scss';
 import Head from 'next/head';
 import { BackgroundHero } from '../components/BackgroundHero';
+
+import { BgHeroHome } from '../components/IconComponents/BgHeroHome';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -12,9 +14,7 @@ export default function Home() {
     <>
       <Head><title>Home - KaraGame</title></Head>
 
-      <BackgroundHero
-        svgHero={<img src='/bgHero.svg' alt="Imagem Background da página" />}
-      />
+      <BackgroundHero svgHero={<BgHeroHome />} />
 
       <main id={styles.mainContent}>
         <h1>KaraGame</h1>
@@ -31,9 +31,26 @@ export default function Home() {
         <div className={styles.buttons}>
           <h2>Comece por:</h2>
           <div className={styles.buttonsGame}>
-            <Button>Alfabetos</Button>
-            <a href="/alphabet/particulas"><Button>Partículas</Button></a>
-            <a href="/alphabet/kanjis"><Button>Kanjis</Button></a>
+            <button className={styles.buttonAlphabets}>
+              Alfabetos
+              <p>Jogue aprendendo os alfabetos básicos da língua japonesa: Hiragana e Katakana</p>
+              <div className={styles.buttonsAlphabets}>
+                <Link href={"/alphabet/hiragana"}><button>Hiragana</button></Link>
+                <Link href={"/alphabet/katakana"}><button>Katakana</button></Link>
+              </div>
+            </button>
+            <a href="/particulas">
+              <button className={styles.buttonParticulas}>
+                Partículas
+                <p>Entenda as partículas com exemplos de usos</p>
+              </button>
+            </a>
+            <a href="/kanjis">
+              <button className={styles.buttonKanjis}>
+                Kanjis
+                <p>Estude os kanjis em conjunto para simplificá-los e decorar de forma mais efetiva</p>
+              </button>
+            </a>
           </div>
         </div>
       </main>
