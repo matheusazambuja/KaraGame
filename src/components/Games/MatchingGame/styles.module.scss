@@ -1,0 +1,201 @@
+.mainContent {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr;
+
+  max-width: 1220px;
+  height: 100%;
+
+  margin: 0 auto;
+
+  margin-top: 64px;
+
+  grid-template-areas:
+  "itemsLeft itemsRight infos";
+
+  .leftSide {
+    display: flex;
+
+    padding-left: 54px;
+
+
+    .itemsLeft {
+      grid-area: itemsLeft;
+      
+      margin-top: 64px;
+  
+      display: flex;
+      align-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+    }
+  }
+
+  .rightSide {
+    display: flex;
+
+    padding-left: 54px;
+    
+    .itemsRight {
+      grid-area: itemsRight;
+  
+      margin-top: 64px;
+      margin-left: 24px;
+  
+      display: flex;
+      align-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+    }
+  }
+
+
+  button {
+
+    width: 108px;
+    height: fit-content;
+
+    background-color: var(--white1);
+    border: 0.4 solid var(--black2);
+    border-radius: 8px;
+
+    padding: 16px 32px;
+
+    transition: 0.2s ease;
+
+    h4 {
+      color: var(--black2);
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+
+  }
+
+  .itemSelected {
+    background-color: var(--white3);
+    border: 0.4 solid var(--gray2);
+
+    h4 {
+      color: var(--blue1);
+    }
+  }
+
+  .itemSelectedCorrectly {
+    background-color: var(--white3);
+    border: 0.4 solid var(--gray2);
+
+    &:hover {
+      background-color: var(--white3);
+      border: 0.4 solid var(--gray2);
+      cursor: not-allowed;
+      filter: brightness(0.9);
+    }
+    
+    h4 {
+      color: var(--blue1);
+    }
+  }
+
+  .infos {
+    grid-area: infos;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: var(--black1);
+      margin-bottom: 16px;
+    }
+
+    .pairLeft {
+      margin-top: 32px;
+
+      h4 {
+        color: var(--black1);
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      h4:last-child {
+        color: var(--gray2);
+      }
+    }
+
+    .gameObjective {
+      margin-top: 24px;
+
+      h4 {
+        color: var(--black1);
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      h4:last-child {
+        color: var(--gray2);
+      }
+    }
+
+    button {
+
+      background-color: var(--blue2);
+      color: var(--white1);
+      font-weight: 500;
+
+      border: 0;
+      border-radius: 8px;
+
+      margin-top: 8px;
+
+      width: fit-content;
+
+      margin-right: 16px;
+      padding: 16px 32px;
+    }
+
+    .finishedGame {
+
+      h2 {
+        text-align: center;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          background-color: var(--blue2);
+          color: var(--white1);
+          font-weight: 500;
+
+          border: 0;
+          border-radius: 8px;
+
+          margin-top: 8px;
+
+          width: fit-content;
+
+          margin-right: 16px;
+          padding: 16px 32px;
+        }
+      }
+    }
+  }
+
+  .lineDivider {
+    border: 1px solid var(--gray2);
+    border-radius: 8px;
+    padding: 32px 0;
+    margin-left: 61px;
+    
+    transition: all 0.2s;
+  }
+}

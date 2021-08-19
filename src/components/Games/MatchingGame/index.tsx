@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next"
 import Link from "next/link"
+import Image from 'next/image';
 import Cookies from "js-cookie"
 
 import { useEffect, useState } from "react"
@@ -162,46 +163,52 @@ export default function MatchingGame() {
   return (
     <main className={styles.mainContent}>
       <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
-      <section className={styles.leftSide}>
-        {itemsLeftSide && itemsLeftSide.map(item => (
-          <button onClick={() => { setItemLeftSideSelected(item) }}
-            key={`${item.character}`}
-            className={
-              item.character === itemLeftSideSelected?.character && styles.itemSelected ||
-              item.isSelected && styles.itemSelectedCorrectly
-            }
-
-          >
-            {item.character}
-          </button>
-        ))}
-      </section>
+      <div className={styles.leftSide}>
+        <section className={styles.itemsLeft}>
+          {itemsLeftSide && itemsLeftSide.map(item => (
+            <button onClick={() => { setItemLeftSideSelected(item) }}
+              key={`${item.character}`}
+              className={
+                item.character === itemLeftSideSelected?.character && styles.itemSelected ||
+                item.isSelected && styles.itemSelectedCorrectly
+              }
+            >
+              <h4>{item.character}</h4>
+            </button>
+          ))}
+        </section>
+        <hr className={styles.lineDivider} />
+      </div>
       <section className={styles.rightSide}>
-        {itemsRightSide.map(item => (
-          <button onClick={() => {
-            setItemRightSideSelected(item)
-          }}
-            key={`${item.character}`}
-          >
-            {item.character}
-          </button>
-        ))}
+        <section className={styles.itemsRight}>
+          {itemsRightSide.map(item => (
+            <button onClick={() => {
+              setItemRightSideSelected(item)
+            }}
+              key={`${item.character}`}
+              className={
+                item.character === itemRightSideSelected?.character && styles.itemSelected ||
+                item.isSelected && styles.itemSelectedCorrectly
+              }
+            >
+              <h4>{item.character}</h4>
+            </button>
+          ))}
+        </section>
+        <hr className={styles.lineDivider} />
       </section>
       <section className={styles.infos}>
-        <div className={styles.lineDivider}>
-          <hr />
+        <h1>{capitalizeFirstLetter(nameAlphabet)}</h1>
+        <Image src={`/${nameAlphabet}.png`} alt={`Image ${nameAlphabet}`}
+          width={241} height={241}
+        />
+        <div className={styles.pairLeft}>
+          <h4>Pares restantes</h4>
+          <h4>{`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}</h4>
         </div>
-        <div>
-          <strong>{capitalizeFirstLetter(nameAlphabet)}</strong>
-          <img src={`/${nameAlphabet}.png`} alt={`Image ${nameAlphabet}`} />
-        </div>
-        <div>
-          <strong>Pares restantes</strong>
-          <strong>{`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}</strong>
-        </div>
-        <div>
-          <strong>Objetivo do jogo:</strong>
-          <p>Relacionar corretamente os elementos das duas colunas</p>
+        <div className={styles.gameObjective}>
+          <h4>Objetivo do jogo:</h4>
+          <h4>Relacionar corretamente os elementos das duas colunas</h4>
         </div>
         {!isFinishedGame &&
           quantityItemsSelectedCorrectly > 0 &&
@@ -214,15 +221,21 @@ export default function MatchingGame() {
         }
 
         {isFinishedGame && (
-          <>
-            <strong>Parabéns!!!</strong>
-            <button onClick={() => setDefaultStateGame()}>Estudar novamente</button>
-            <button>
-              <Link href={`/alphabet/${nameAlphabet}`}>
-                Estudar outras famílias
-              </Link>
-            </button>
-          </>
+          <div className={styles.finishedGame}>
+            <h2>Parabéns!!!</h2>
+            <div className={styles.buttons}>
+              <button onClick={() => setDefaultStateGame()}>
+                <p>Estudar novamente</p>
+              </button>
+              <button>
+                <Link href={`/alphabet/${nameAlphabet}`}>
+                  <a>
+                    <p>Estudar outras famílias</p>
+                  </a>
+                </Link>
+              </button>
+            </div>
+          </div>
         )}
       </section>
     </main>
