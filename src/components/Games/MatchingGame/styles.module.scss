@@ -1,10 +1,9 @@
 .mainContent {
   display: grid; 
   grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
 
   max-width: 1220px;
-  height: 100%;
 
   margin: 0 auto;
 

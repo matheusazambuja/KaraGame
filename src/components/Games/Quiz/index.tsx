@@ -5,7 +5,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTheme } from "../../../hooks/useTheme";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { BackgroundHero } from "../../BackgroundHero";
 import { Button } from "../../Button";
+import { BgHeroGeneric } from "../../IconComponents/BgHeroGeneric";
 
 import styles from './styles.module.scss';
 
@@ -159,48 +161,51 @@ export default function Quiz() {
   }
 
   return (
-    <main className={styles.mainContent}>
-      <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
-      {!isFinishedGame &&
-        <h2 className={styles.titleInfoQuiz}>Selecione a opção correspondente ao elemento</h2>
-      }
+    <>
+      <BackgroundHero svgHero={<BgHeroGeneric />} />
+      <main className={styles.mainContent}>
+        <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
+        {!isFinishedGame &&
+          <h2 className={styles.titleInfoQuiz}>Selecione a opção correspondente ao elemento</h2>
+        }
 
-      {!isFinishedGame && (
-        <>
-          <p className={styles.itemCurrentAsked}>{itemCurrentAsked && itemCurrentAsked.character}</p>
-          <div className={styles.containerButtons}>
-            {possiblesTranslate.map(translate => (
-              <Button key={`button_${translate}`}
-                onClick={() => setTranslateSelected(translate)}
-              >
-                {translate}
+        {!isFinishedGame && (
+          <>
+            <p className={styles.itemCurrentAsked}>{itemCurrentAsked && itemCurrentAsked.character}</p>
+            <div className={styles.containerButtons}>
+              {possiblesTranslate.map(translate => (
+                <Button key={`button_${translate}`}
+                  onClick={() => setTranslateSelected(translate)}
+                >
+                  {translate}
+                </Button>
+              ))}
+            </div>
+
+            <div className={styles.progressBar}>
+              <div style={{
+                width: `${Math.round(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}%`
+              }}></div>
+            </div>
+          </>
+        )}
+
+        {isFinishedGame && (
+          <section className={styles.finishedGame}>
+            <h1>Parabéns!!!</h1>
+            <h2>Você terminou o teste</h2>
+            <div className={styles.containerButtonsFinished}>
+              <Button onClick={setDefaultStateGame}>Estudar novamente</Button>
+              <Button>
+                <Link href={`/alphabet/${nameAlphabet}`}>
+                  Estudar outras famílias
+                </Link>
               </Button>
-            ))}
-          </div>
-
-          <div className={styles.progressBar}>
-            <div style={{
-              width: `${Math.round(quantityItemsWasSelectedCorrectly() / itemsAsked.length * 100)}%`
-            }}></div>
-          </div>
-        </>
-      )}
-
-      {isFinishedGame && (
-        <section className={styles.finishedGame}>
-          <h1>Parabéns!!!</h1>
-          <h2>Você terminou o teste</h2>
-          <div className={styles.containerButtonsFinished}>
-            <Button onClick={setDefaultStateGame}>Estudar novamente</Button>
-            <Button>
-              <Link href={`/alphabet/${nameAlphabet}`}>
-                Estudar outras famílias
-              </Link>
-            </Button>
-          </div>
-        </section>
-      )}
-    </main>
+            </div>
+          </section>
+        )}
+      </main>
+    </>
   );
 }
 

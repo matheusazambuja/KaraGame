@@ -8,6 +8,8 @@ import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter"
 
 import styles from "./styles.module.scss";
 import Head from "next/head"
+import { BackgroundHero } from "../../BackgroundHero";
+import { BgHeroGeneric } from "../../IconComponents/BgHeroGeneric";
 
 type DataItemSide = {
   id: number;
@@ -161,84 +163,87 @@ export default function MatchingGame() {
   }
 
   return (
-    <main className={styles.mainContent}>
-      <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
-      <div className={styles.leftSide}>
-        <section className={styles.itemsLeft}>
-          {itemsLeftSide && itemsLeftSide.map(item => (
-            <button onClick={() => { setItemLeftSideSelected(item) }}
-              key={`${item.character}`}
-              className={
-                item.character === itemLeftSideSelected?.character && styles.itemSelected ||
-                item.isSelected && styles.itemSelectedCorrectly
-              }
-            >
-              <h4>{item.character}</h4>
-            </button>
-          ))}
-        </section>
-        <hr className={styles.lineDivider} />
-      </div>
-      <section className={styles.rightSide}>
-        <section className={styles.itemsRight}>
-          {itemsRightSide.map(item => (
-            <button onClick={() => {
-              setItemRightSideSelected(item)
-            }}
-              key={`${item.character}`}
-              className={
-                item.character === itemRightSideSelected?.character && styles.itemSelected ||
-                item.isSelected && styles.itemSelectedCorrectly
-              }
-            >
-              <h4>{item.character}</h4>
-            </button>
-          ))}
-        </section>
-        <hr className={styles.lineDivider} />
-      </section>
-      <section className={styles.infos}>
-        <h1>{capitalizeFirstLetter(nameAlphabet)}</h1>
-        <Image src={`/${nameAlphabet}.png`} alt={`Image ${nameAlphabet}`}
-          width={241} height={241}
-        />
-        <div className={styles.pairLeft}>
-          <h4>Pares restantes</h4>
-          <h4>{`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}</h4>
-        </div>
-        <div className={styles.gameObjective}>
-          <h4>Objetivo do jogo:</h4>
-          <h4>Relacionar corretamente os elementos das duas colunas</h4>
-        </div>
-        {!isFinishedGame &&
-          quantityItemsSelectedCorrectly > 0 &&
-          quantityItemsSelectedCorrectly < itemsLeftSide.length
-          && (
-            <>
-              <button onClick={() => setDefaultStateGame()}>Reiniciar jogo</button>
-            </>
-          )
-        }
-
-        {isFinishedGame && (
-          <div className={styles.finishedGame}>
-            <h2>Parabéns!!!</h2>
-            <div className={styles.buttons}>
-              <button onClick={() => setDefaultStateGame()}>
-                <p>Estudar novamente</p>
+    <>
+      <BackgroundHero svgHero={<BgHeroGeneric />} />
+      <main className={styles.mainContent}>
+        <Head><title>{`Quiz - ${capitalizeFirstLetter(nameAlphabet)}`}</title></Head>
+        <div className={styles.leftSide}>
+          <section className={styles.itemsLeft}>
+            {itemsLeftSide && itemsLeftSide.map(item => (
+              <button onClick={() => { setItemLeftSideSelected(item) }}
+                key={`${item.character}`}
+                className={
+                  item.character === itemLeftSideSelected?.character && styles.itemSelected ||
+                  item.isSelected && styles.itemSelectedCorrectly
+                }
+              >
+                <h4>{item.character}</h4>
               </button>
-              <button>
-                <Link href={`/alphabet/${nameAlphabet}`}>
-                  <a>
-                    <p>Estudar outras famílias</p>
-                  </a>
-                </Link>
+            ))}
+          </section>
+          <hr className={styles.lineDivider} />
+        </div>
+        <section className={styles.rightSide}>
+          <section className={styles.itemsRight}>
+            {itemsRightSide.map(item => (
+              <button onClick={() => {
+                setItemRightSideSelected(item)
+              }}
+                key={`${item.character}`}
+                className={
+                  item.character === itemRightSideSelected?.character && styles.itemSelected ||
+                  item.isSelected && styles.itemSelectedCorrectly
+                }
+              >
+                <h4>{item.character}</h4>
               </button>
-            </div>
+            ))}
+          </section>
+          <hr className={styles.lineDivider} />
+        </section>
+        <section className={styles.infos}>
+          <h1>{capitalizeFirstLetter(nameAlphabet)}</h1>
+          <Image src={`/${nameAlphabet}.png`} alt={`Image ${nameAlphabet}`}
+            width={241} height={241}
+          />
+          <div className={styles.pairLeft}>
+            <h4>Pares restantes</h4>
+            <h4>{`${quantityItemsSelectedCorrectly}/${itemsLeftSide.length}`}</h4>
           </div>
-        )}
-      </section>
-    </main>
+          <div className={styles.gameObjective}>
+            <h4>Objetivo do jogo:</h4>
+            <h4>Relacionar corretamente os elementos das duas colunas</h4>
+          </div>
+          {!isFinishedGame &&
+            quantityItemsSelectedCorrectly > 0 &&
+            quantityItemsSelectedCorrectly < itemsLeftSide.length
+            && (
+              <>
+                <button onClick={() => setDefaultStateGame()}>Reiniciar jogo</button>
+              </>
+            )
+          }
+
+          {isFinishedGame && (
+            <div className={styles.finishedGame}>
+              <h2>Parabéns!!!</h2>
+              <div className={styles.buttons}>
+                <button onClick={() => setDefaultStateGame()}>
+                  <p>Estudar novamente</p>
+                </button>
+                <button>
+                  <Link href={`/alphabet/${nameAlphabet}`}>
+                    <a>
+                      <p>Estudar outras famílias</p>
+                    </a>
+                  </Link>
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+      </main>
+    </>
   );
 }
 
