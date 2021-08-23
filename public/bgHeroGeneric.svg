@@ -1,18 +1,18 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="bgHeroGeneric" clip-path="url(#clip0)">
+<g id="bgHeroGeneric" clipPath="url(#clip0)">
 <g id="Vector 1115" filter="url(#filter0_f)">
-<path d="M905.786 674.029C1213.43 773.427 1550.83 1009.76 1666.42 1000.86C1873.36 984.929 1734.99 438.179 1482.23 282.824C1245.04 137.045 -185.467 221.645 230.235 529.324C451.396 693.015 643.963 589.437 905.786 674.029Z" fill="url(#paint0_linear)" fill-opacity="0.25"/>
+<path d="M905.786 674.029C1213.43 773.427 1550.83 1009.76 1666.42 1000.86C1873.36 984.929 1734.99 438.179 1482.23 282.824C1245.04 137.045 -185.467 221.645 230.235 529.324C451.396 693.015 643.963 589.437 905.786 674.029Z" fill="url(#paint0_linear)" fillOpacity="0.25"/>
 </g>
 </g>
 <defs>
-<filter id="filter0_f" x="-166" y="-268" width="2269.13" height="1834.81" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<filter id="filter0_f" x="-166" y="-268" width="2269.13" height="1834.81" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+<feFlood floodOpacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="150" result="effect1_foregroundBlur"/>
 </filter>
 <linearGradient id="paint0_linear" x1="420.52" y1="983.186" x2="954.502" y2="31.89" gradientUnits="userSpaceOnUse">
-<stop offset="0.0001" stop-color="#3082E2"/>
-<stop offset="1" stop-color="#4E1919" stop-opacity="0"/>
+<stop offset="0.0001" stopColor="#3082E2"/>
+<stop offset="1" stopColor="#4E1919" stopOpacity="0"/>
 </linearGradient>
 <clipPath id="clip0">
 <rect width="1920" height="1080" fill="white"/>
